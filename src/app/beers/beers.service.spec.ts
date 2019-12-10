@@ -36,6 +36,6 @@ describe('BeersService', () => {
       beersService.getBeers();
 
       expect(http.get).toHaveBeenCalledWith('https://api.punkapi.com/v2/beers');
-    })
-  })
+    });
+  });
 });

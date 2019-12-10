@@ -39,6 +39,6 @@ describe('BeerListComponent', () => {
 
       expect(store.dispatch).toHaveBeenCalledWith(fetchBeersListRequest());
       expect(component.beers$).toBeDefined();
-    })
-  })
+    });
+  });
 });

@@ -4,7 +4,7 @@ import { beersReducer } from './beers.reducer';
 
 
 export interface DrinksState {
-  beersState: BeersState
+  beersState: BeersState;
 }
 
 export const beersReducers: ActionReducerMap<DrinksState> = {

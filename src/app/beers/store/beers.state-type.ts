@@ -1,3 +1,3 @@
 export interface BeersState {
-  beers: Array<any>
+  beers: Array<any>;
 }
