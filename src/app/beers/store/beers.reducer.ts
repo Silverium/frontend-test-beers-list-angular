@@ -1,5 +1,5 @@
 import { BeersState } from "./beers.state-type";
-import { FETCH_BEERS_RESPONSE } from "./beers.actions";
+import { FETCH_BEERS_RESPONSE, FETCH_PAGINATED_BEERS_RESPONSE } from "./beers.actions";
 import { GenericAction } from "../../models";
 
 const initialState: BeersState = {
@@ -9,6 +9,9 @@ const initialState: BeersState = {
 export const beersReducer = (state = initialState, action: GenericAction) => {
   switch (action.type) {
     case FETCH_BEERS_RESPONSE: {
+      return <BeersState>{ ...state, beers: action.payload };
+    }
+    case FETCH_PAGINATED_BEERS_RESPONSE: {
       return <BeersState>{ ...state, beers: action.payload };
     }
 

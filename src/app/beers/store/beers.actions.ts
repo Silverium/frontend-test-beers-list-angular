@@ -19,3 +19,15 @@ export const fetchBeersListResponse = (beers: any): Action => {
 export const fetchBeersListFailed = (): Action => {
   return new GenericAction(FETCH_BEERS_FAILED);
 };
+
+export const FETCH_PAGINATED_BEERS_REQUEST = '[Beers/paginated] fetch list of beers request';
+export const FETCH_PAGINATED_BEERS_RESPONSE = '[Beers/paginated] fetch list of beers response';
+export const FETCH_PAGINATED_BEERS_FAILED = '[Beers/paginated] fetch list of beers failed';
+
+export const fetchPaginatedBeersListRequest = (page: number = 1): Action => {
+  return new GenericAction(FETCH_PAGINATED_BEERS_REQUEST, page);
+};
+
+export const fetchPaginatedBeersListFailed = (): Action => {
+  return new GenericAction(FETCH_PAGINATED_BEERS_FAILED);
+};

@@ -12,4 +12,7 @@ export class BeersService {
   public getBeers(): Observable<any> {
     return this.http.get('https://api.punkapi.com/v2/beers');
   }
+  public getPaginatedBeers(page: number = 1): Observable<any> {
+    return this.http.get('https://api.punkapi.com/v2/beers?page='+ page);
+  }
 }

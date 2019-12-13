@@ -12,6 +12,7 @@ import { BeersEffects } from './store/beers.effects';
 import { BeersService } from './beers.service';
 import { BeerDetailComponent } from './beer-detail/beer-detail.component';
 import { FormsModule } from '@angular/forms';
+import { PaginatedComponent } from './paginated/paginated.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     BeerListComponent,
     BeerDetailComponent,
-    FilterByName
+    FilterByName,
+    PaginatedComponent
   ],
   providers: [
     BeersService

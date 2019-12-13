@@ -3,7 +3,7 @@
   <input aria-label="Beer Name input" type="text" [(ngModel)]="name" />
 </label>
 <section class="BeersList">
-<a class="beer" *ngFor="let beer of beers$ | async | filterByName:name " [routerLink]="beer.id">
+<a class="beer" *ngFor="let beer of beers$ | async | filterByName:name " [routerLink]="'/beers/' + beer.id">
   <h4>
     {{ beer.name }}
   </h4>

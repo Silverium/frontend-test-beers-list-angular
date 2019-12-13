@@ -4,7 +4,7 @@ import { DrinksState } from '../store';
 import { Observable } from 'rxjs/index';
 import { getBeerDetailSelector } from '../store/beers.selectors';
 import { ActivatedRoute } from '@angular/router';
-import { fetchBeersListRequest } from '../store/beers.actions';
+import { fetchBeersListRequest, fetchPaginatedBeersListRequest } from '../store/beers.actions';
 @Component({
   selector: 'app-beer-detail',
   templateUrl: './beer-detail.component.html',
@@ -13,13 +13,16 @@ import { fetchBeersListRequest } from '../store/beers.actions';
 export class BeerDetailComponent implements OnInit {
   public beerDetail$: Observable<any>;
 
-  constructor(private store: Store<DrinksState>,
-    private route: ActivatedRoute, ) { }
+  constructor(
+    private store: Store<DrinksState>,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params.id
-    this.store.dispatch(fetchBeersListRequest());
-    this.beerDetail$ = this.store.pipe(select(getBeerDetailSelector,{ id }));
+    const page = Math.ceil(id/25)
+    this.store.dispatch(fetchPaginatedBeersListRequest(page));
+    this.beerDetail$ = this.store.pipe(select(getBeerDetailSelector, { id }));
   }
 
 }
