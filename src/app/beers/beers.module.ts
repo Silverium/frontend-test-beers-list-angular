@@ -1,3 +1,4 @@
+import { FilterByName } from './../filter-by-name.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BeerListComponent } from './beer-list/beer-list.component';
@@ -10,10 +11,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { BeersEffects } from './store/beers.effects';
 import { BeersService } from './beers.service';
 import { BeerDetailComponent } from './beer-detail/beer-detail.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     HttpClientModule,
     RouterModule.forChild(BeersRouting),
     StoreModule.forFeature('drinks', beersReducers),
@@ -21,7 +24,8 @@ import { BeerDetailComponent } from './beer-detail/beer-detail.component';
   ],
   declarations: [
     BeerListComponent,
-    BeerDetailComponent
+    BeerDetailComponent,
+    FilterByName
   ],
   providers: [
     BeersService

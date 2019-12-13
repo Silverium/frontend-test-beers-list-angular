@@ -1,11 +1,16 @@
-<a class="beer"
-     *ngFor="let beer of (beers$ | async)"
-     [routerLink]="beer.id">
+<label>
+  Beer Name:
+  <input aria-label="Beer Name input" type="text" [(ngModel)]="name" />
+</label>
+<section class="BeersList">
+<a class="beer" *ngFor="let beer of beers$ | async | filterByName:name " [routerLink]="beer.id">
   <h4>
-    {{beer.name}}
+    {{ beer.name }}
   </h4>
   <p>
-    {{beer.tagline}}
+    {{ beer.tagline }}
   </p>
-  <img src="{{beer.image_url}}" alt="beer image">
+  <img src="{{ beer.image_url }}" alt="beer image" />
 </a>
+  
+</section>

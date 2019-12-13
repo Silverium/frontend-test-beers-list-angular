@@ -4,7 +4,6 @@ import { DrinksState } from '../store';
 import { Observable } from 'rxjs/index';
 import { getBeersSelector } from '../store/beers.selectors';
 import { fetchBeersListRequest } from '../store/beers.actions';
-
 @Component({
   selector: 'app-beer-list',
   templateUrl: './beer-list.component.html',
@@ -13,7 +12,7 @@ import { fetchBeersListRequest } from '../store/beers.actions';
 export class BeerListComponent implements OnInit {
 
   public beers$: Observable<any>;
-
+  public name = '';
   constructor(private store: Store<DrinksState>) { }
 
   ngOnInit() {
