@@ -2,7 +2,6 @@ import { BeersState } from './beers.state-type';
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 import { beersReducer } from './beers.reducer';
 
-
 export interface DrinksState {
   beersState: BeersState;
 }
