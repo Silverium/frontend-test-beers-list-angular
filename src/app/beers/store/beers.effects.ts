@@ -4,9 +4,10 @@ import { catchError, map, switchMap } from "rxjs/operators";
 import { BeersService } from "../beers.service";
 import {
   FETCH_BEERS_REQUEST,
+  FETCH_BEER_REQUEST,
+  fetchBeerResponse,
   fetchBeersListFailed,
   fetchBeersListResponse,
-  FETCH_PAGINATED_BEERS_REQUEST
 } from "./beers.actions";
 import { of } from "rxjs/index";
 
@@ -16,14 +17,14 @@ export class BeersEffects {
 
   @Effect() fetchBeers = this.actions$.pipe(
     ofType(FETCH_BEERS_REQUEST),
-    switchMap(() => this.beersService.getBeers()),
+    switchMap((action) => this.beersService.getBeers((action as any).payload)),
     map(res => fetchBeersListResponse(res)),
     catchError(() => of(fetchBeersListFailed()))
   );
   @Effect() fetchPaginatedBeers = this.actions$.pipe(
-    ofType(FETCH_PAGINATED_BEERS_REQUEST),
-    switchMap((action) => this.beersService.getPaginatedBeers((action as any).payload)),
-    map(res => fetchBeersListResponse(res)),
+    ofType(FETCH_BEER_REQUEST),
+    switchMap((action) => this.beersService.getBeer((action as any).payload)),
+    map(res => fetchBeerResponse(res)),
     catchError(() => of(fetchBeersListFailed()))
   );
 }

@@ -1,35 +1,20 @@
 <section class="Toolbar">
   <label>
-    Filter by Beer Name:
-    <input aria-label="Beer Name input" type="text" [(ngModel)]="name" />
+    Search by Beer Name:
+    <input aria-label="Beer Name input" type="text" (keyup)="updateRequest({beer_name: beer_name})"
+      [(ngModel)]="beer_name" placeholder="Search by name" />
   </label>
   <div>
-    <a
-      [class.disabled]="page$ <= 1"
-      [routerLink]="['/beers/paginated', +page$ - 1]"
-      >Previous</a
-    >
-    {{ page$ }}
-    <a [routerLink]="['/beers/paginated', +page$ + 1]">Next</a>
-  </div>
-  <div>
-    <button [disabled]="page$ <= 1" (click)="goTo(+page$ - 1)">Previous</button>
-    {{ page$ }}
-    <button (click)="goTo(+page$ + 1)">Next</button>
+    <button *ngIf="page$ > 1" (click)="updateRequest({page: 1})">First</button>
+    <button [disabled]="page$ <= 1" (click)="updateRequest({page: +page$ - 1})">Previous</button>
+    <p>{{ page$ }}</p>
+    <button (click)="updateRequest({page:+page$ + 1})">Next</button>
   </div>
 </section>
 <section class="BeersList">
-  <a
-    class="beer"
-    *ngFor="let beer of beers$ | async | filterByName: name"
-    [routerLink]="'/beers/' + beer.id"
-  >
-    <h4>
-      {{ beer.name }}
-    </h4>
-    <p>
-      {{ beer.tagline }}
-    </p>
+  <a class="beer" *ngFor="let beer of beers$ | async" [routerLink]="'/beers/' + beer.id">
+    <h4> {{ beer.name }} </h4>
+    <p> {{ beer.tagline }} </p>
     <img src="{{ beer.image_url }}" alt="beer image" />
   </a>
 </section>

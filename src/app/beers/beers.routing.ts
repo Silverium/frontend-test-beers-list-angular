@@ -11,10 +11,6 @@ export const BeersRouting: Routes = [
   },
   {
     path: 'beers/paginated',
-    redirectTo: 'beers/paginated/1'
-  },
-  {
-    path: 'beers/paginated/:page',
     component: PaginatedComponent
   },
   {

@@ -1,8 +1,9 @@
+import { BeersQuery } from './../beers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DrinksState } from '../store';
 import { Observable } from 'rxjs/index';
-import { fetchPaginatedBeersListRequest } from '../store/beers.actions';
+import { fetchBeersListRequest } from '../store/beers.actions';
 import { getBeersSelector } from '../store/beers.selectors';
 import { select, Store } from '@ngrx/store';
 
@@ -13,8 +14,8 @@ import { select, Store } from '@ngrx/store';
 })
 export class PaginatedComponent implements OnInit {
   public beers$: Observable<any>;
-  public page$: number;
-  public goTo: Function;
+  public page$: number = 1;
+  public updateRequest: Function;
   constructor(
     private store: Store<DrinksState>,
     private route: ActivatedRoute,
@@ -22,12 +23,17 @@ export class PaginatedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.goTo = (page: number) => this.router.navigate(['beers', 'paginated', page]);
-    this.route.params.subscribe((value) => {
-      this.page$ = value.page;
-      this.store.dispatch(fetchPaginatedBeersListRequest(this.page$));
-      this.beers$ = this.store.pipe(select(getBeersSelector));
-
-    });
+    this.beers$ = this.store.pipe(select(getBeersSelector));
+    this.updateRequest = (queryParams: BeersQuery) => this.router.navigate(
+      ['beers', 'paginated'],
+      {
+        queryParamsHandling: 'merge',
+        queryParams
+      });
+      
+    this.route.queryParams.subscribe((query) => {
+      this.page$ = query.page;
+      this.store.dispatch(fetchBeersListRequest(query));
+    })
   }
 }
