@@ -1,32 +1,30 @@
-import { FilterByName } from './../filter-by-name.pipe';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { BeerDetailComponent } from './beer-detail/beer-detail.component';
 import { BeerListComponent } from './beer-list/beer-list.component';
-import { RouterModule } from '@angular/router';
+import { BeersEffects } from './store/beers.effects';
 import { BeersRouting } from './beers.routing';
+import { BeersService } from './beers.service';
+import { CommonModule } from '@angular/common';
+import { EffectsModule } from '@ngrx/effects';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { PaginatedComponent } from './paginated/paginated.component';
+import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { beersReducers } from './store';
-import { EffectsModule } from '@ngrx/effects';
-import { BeersEffects } from './store/beers.effects';
-import { BeersService } from './beers.service';
-import { BeerDetailComponent } from './beer-detail/beer-detail.component';
-import { FormsModule } from '@angular/forms';
-import { PaginatedComponent } from './paginated/paginated.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    EffectsModule.forFeature([BeersEffects]),
     FormsModule,
     HttpClientModule,
     RouterModule.forChild(BeersRouting),
     StoreModule.forFeature('drinks', beersReducers),
-    EffectsModule.forFeature([BeersEffects])
   ],
   declarations: [
     BeerListComponent,
     BeerDetailComponent,
-    FilterByName,
     PaginatedComponent
   ],
   providers: [

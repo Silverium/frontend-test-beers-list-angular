@@ -30,7 +30,7 @@ export class BeerListComponent implements OnInit {
         queryParams
       });
 
-    this.route.queryParams.subscribe((query) => {
+    this.route.queryParams.subscribe((query={}) => {
       this.store.dispatch(fetchBeersListRequest(query));
     })
 

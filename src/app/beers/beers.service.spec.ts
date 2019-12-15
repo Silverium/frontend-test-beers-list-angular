@@ -33,9 +33,9 @@ describe('BeersService', () => {
     it ('should call to get method with specific url', () => {
       spyOn(http, 'get').and.callThrough();
 
-      beersService.getBeers();
+      beersService.getBeers({});
 
-      expect(http.get).toHaveBeenCalledWith('https://api.punkapi.com/v2/beers');
+      expect(http.get).toHaveBeenCalledWith('https://api.punkapi.com/v2/beers?');
     });
   });
 });

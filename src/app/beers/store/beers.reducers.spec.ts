@@ -7,7 +7,8 @@ import { beersReducer } from './beers.reducer';
 describe('beersReducer', () => {
 
   const initialState: BeersState = {
-    beers: []
+    beers: [],
+    beer: null,
   };
 
   describe('FETCH_BEERS_RESPONSE', () => {
