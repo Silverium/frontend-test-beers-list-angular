@@ -7,7 +7,7 @@
   <div>
     <button *ngIf="page$ > 1" (click)="updateRequest({page: 1})">First</button>
     <button [disabled]="page$ <= 1" (click)="updateRequest({page: +page$ - 1})">Previous</button>
-    <p>{{ page$ }}</p>
+    {{ page$ }}
     <button (click)="updateRequest({page:+page$ + 1})">Next</button>
   </div>
 </section>
