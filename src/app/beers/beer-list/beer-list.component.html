@@ -1,7 +1,10 @@
+<section class="Toolbar">
 <label>
   Beer Name:
   <input aria-label="Beer Name input" type="text" [(ngModel)]="name" />
 </label>
+  
+</section>
 <section class="BeersList">
 <a class="beer" *ngFor="let beer of beers$ | async | filterByName:name " [routerLink]="'/beers/' + beer.id">
   <h4>

@@ -1,21 +1,26 @@
-<section class="beer" *ngIf="beerDetail$ | async as beer; else loadingBlock">
-  <img height="300" src="{{ beer.image_url }}" alt="beer image" />
-  <h2>{{ beer.name }}</h2>
-  <p>Abv: {{ beer.abv }}</p>
-  <p>Ibu: {{ beer.ibu }}</p>
-  <h3>Food pairing:</h3>
-  <ul>
-    <li *ngFor="let pairing of beer.food_pairing">
-      {{ pairing }}
-    </li>
-  </ul>
-  <h3>Contributed by</h3>
-  <p>{{ beer.contributed_by }}</p>
-  <button (click)="showGravityDifference = true">
-    Show Gravity Difference
-  </button>
-  <p *ngIf="showGravityDifference">
-    Graviti difference is {{ beer.target_og - beer.target_fg }}
-  </p>
+<section
+  class="BeerDetail"
+  *ngIf="beerDetail$ | async as beer; else loadingBlock"
+>
+  <img src="{{ beer.image_url }}" alt="beer image" />
+  <section class="beer">
+    <h2>{{ beer.name }}</h2>
+    <p>Alcohol By Volume: {{ beer.abv }}</p>
+    <p>International Bittering Unit: {{ beer.ibu }}</p>
+    <h3>Food pairing:</h3>
+    <ul>
+      <li *ngFor="let pairing of beer.food_pairing">
+        {{ pairing }}
+      </li>
+    </ul>
+    <h3>Contributed by</h3>
+    <p>{{ beer.contributed_by }}</p>
+    <button (click)="showGravityDifference = true">
+      Show Gravity Difference
+    </button>
+    <p [class.invisible]="!showGravityDifference">
+      Graviti difference is {{ beer.target_og - beer.target_fg }}
+    </p>
+  </section>
 </section>
 <ng-template #loadingBlock>Loading...</ng-template>

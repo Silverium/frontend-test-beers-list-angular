@@ -1,19 +1,29 @@
-<label>
-  Beer Name:
-  <input aria-label="Beer Name input" type="text" [(ngModel)]="name" />
-</label>
-<div>
-  <a [class.disabled]="(page$ <= 1)" [routerLink]="['/beers/paginated', +page$ - 1]">Previous</a>
-  {{ page$ }}
-  <a [routerLink]="['/beers/paginated', +page$ + 1]">Next</a>
-</div>
-<div>
-  <button [disabled]="page$ <= 1" (click)="goTo(+page$ - 1)">Previous</button>
-  {{ page$ }}
-  <button (click)="goTo(+page$ + 1)">Next</button>
-</div>
+<section class="Toolbar">
+  <label>
+    Filter by Beer Name:
+    <input aria-label="Beer Name input" type="text" [(ngModel)]="name" />
+  </label>
+  <div>
+    <a
+      [class.disabled]="page$ <= 1"
+      [routerLink]="['/beers/paginated', +page$ - 1]"
+      >Previous</a
+    >
+    {{ page$ }}
+    <a [routerLink]="['/beers/paginated', +page$ + 1]">Next</a>
+  </div>
+  <div>
+    <button [disabled]="page$ <= 1" (click)="goTo(+page$ - 1)">Previous</button>
+    {{ page$ }}
+    <button (click)="goTo(+page$ + 1)">Next</button>
+  </div>
+</section>
 <section class="BeersList">
-  <a class="beer" *ngFor="let beer of beers$ | async | filterByName: name" [routerLink]="'/beers/' + beer.id">
+  <a
+    class="beer"
+    *ngFor="let beer of beers$ | async | filterByName: name"
+    [routerLink]="'/beers/' + beer.id"
+  >
     <h4>
       {{ beer.name }}
     </h4>

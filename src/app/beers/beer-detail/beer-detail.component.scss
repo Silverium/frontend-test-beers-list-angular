@@ -1,0 +1,41 @@
+
+$beerDetailWidth: 400px;
+
+.BeerDetail {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px;
+  justify-content: center;
+  align-items: center;
+
+  .beer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: $beerDetailWidth;
+    margin: 15px;
+    h4 {
+      margin-bottom: 0;
+    }
+    h4, p {
+      text-align: center;
+    }
+  }
+    img {
+      height: fit-content;
+      max-height: 400px;
+    }
+  a {
+    color: inherit;
+    text-decoration: inherit;
+    &:hover {
+      box-shadow: inset 0 0 10px 0 rgba(white, 0.7);;
+    }
+  }
+
+  @media screen and (min-width: 1420px) {
+    max-width: 70%;
+    margin: 50px auto;
+  }
+}
