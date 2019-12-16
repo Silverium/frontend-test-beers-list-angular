@@ -1,9 +1,13 @@
-@import './setup.scss';
+@import "./setup.scss";
 // reference: https://medium.com/@jonnykates/automating-colour-contrast-ratios-with-sass-e201f3b52797
 @mixin text-contrast($n) {
-  $color-brightness: round((red($n)*299)+(green($n)*587)+(blue($n)*114)/1000);
-  $light-color: round((red(#ffffff)*299)+(green(#ffffff)*587)+(blue(#ffffff)*114)/1000);
-  @if abs($color-brightness) < ($light-color/2){
+  $color-brightness: round(
+    (red($n) * 299)+ (green($n) * 587)+ (blue($n) * 114)/1000
+  );
+  $light-color: round(
+    (red(#ffffff) * 299)+ (green(#ffffff) * 587)+ (blue(#ffffff) * 114)/1000
+  );
+  @if abs($color-brightness) < ($light-color/2) {
     color: white;
   } @else {
     color: black;
@@ -11,7 +15,7 @@
 }
 
 body {
-  @include text-contrast($appBackground)
+  @include text-contrast($appBackground);
   background: $appBackground;
   margin: 0;
 }
@@ -21,9 +25,14 @@ a {
     text-decoration: none;
     color: lightgray;
   }
+  @include text-contrast($appBackground);
   &:visited {
-      color: inherit;
-    }
+    @include text-contrast($appBackground);
+  }
+  &:hover{
+    color: mix(black, $appBackground, 50%);
+    text-shadow: 0 0 6px white;
+  }
 }
 .invisible {
   visibility: hidden;
