@@ -1,3 +1,4 @@
+import { GenericAction } from './../../models';
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { catchError, map, switchMap } from "rxjs/operators";
@@ -17,7 +18,7 @@ export class BeersEffects {
 
   @Effect() fetchBeers = this.actions$.pipe(
     ofType(FETCH_BEERS_REQUEST),
-    switchMap((action) => this.beersService.getBeers((action as any).payload)),
+    switchMap((action:GenericAction) => this.beersService.getBeers(action.payload)),
     map(res => fetchBeersListResponse(res)),
     catchError(() => of(fetchBeersListFailed()))
   );
