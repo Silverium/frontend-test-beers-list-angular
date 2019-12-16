@@ -8,16 +8,19 @@
   <img src="{{ beer.image_url }}" alt="beer image" />
   <section class="beer">
     <h2>{{ beer.name }}</h2>
-    <p>Alcohol By Volume: {{ beer.abv }}</p>
-    <p>International Bittering Unit: {{ beer.ibu }}</p>
+    <h3>Description</h3>
+    <p>{{ beer.description }}</p>
+    <p id="first_brewed">First brewed: {{ beer.first_brewed }}</p>
+    <p id="abv">Alcohol By Volume: {{ beer.abv }}</p>
+    <p id="ibu">International Bittering Unit: {{ beer.ibu }}</p>
     <h3>Food pairing: </h3>
-    <ul>
+    <ul id="food_pairing">
       <li *ngFor="let pairing of beer.food_pairing">
         {{ pairing }}
       </li>
     </ul>
     <h3>Contributed by</h3>
-    <p>{{ beer.contributed_by }}</p>
+    <p id="contributed_by">{{ beer.contributed_by }}</p>
     <button (click)="showGravityDifference = true">
       Show Gravity Difference
     </button>
