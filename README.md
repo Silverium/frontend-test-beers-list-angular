@@ -1,8 +1,8 @@
-# FrontendTest
+# CodeSandbox
+___
+Navigate to https://codesandbox.io/s/github/Silverium/frontend-test-beers-list-angular to see all code and preview
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
-
-This project uses last version of [NgRx Store](https://github.com/ngrx/store)
+Navigate to [this link](https://fmuc0.csb.app/) to see the app in the browser
 
 ## Development server
 
