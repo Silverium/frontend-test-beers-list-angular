@@ -1,4 +1,3 @@
-<a [routerLink]="['/beers']">Home</a>
 <section class="Toolbar">
   <a [class.disabled]="id$ <= 1" [routerLink]="['/beers', +id$ - 1]">Previous</a>
   <p>{{ id$ }}</p>

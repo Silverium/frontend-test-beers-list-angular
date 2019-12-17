@@ -4,7 +4,6 @@
     <input aria-label="Beer Name input" type="text" (keyup)="updateRequest({beer_name: beer_name})"
       [(ngModel)]="beer_name" placeholder="Search by name" />
   </label>
-  <a [routerLink]="'/beers/paginated'"> Paginated list </a>
 </section>
 <section class="BeersList">
   <a class="beer" *ngFor="let beer of beers$ | async" [routerLink]="'/beers/' + beer.id">
