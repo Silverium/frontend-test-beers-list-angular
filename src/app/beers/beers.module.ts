@@ -12,6 +12,7 @@ import { PaginatedComponent } from './paginated/paginated.component';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { beersReducers } from './store';
+import { InfiniteComponent } from './infinite/infinite.component';
 
 @NgModule({
   imports: [
@@ -25,10 +26,11 @@ import { beersReducers } from './store';
   declarations: [
     BeerListComponent,
     BeerDetailComponent,
-    PaginatedComponent
+    PaginatedComponent,
+    InfiniteComponent
   ],
   providers: [
-    BeersService
+    BeersService,
   ]
 })
 export class BeersModule { }

@@ -1,18 +1,14 @@
 <section class="Toolbar">
   <label>
-    Search Beers:
-    <input aria-label="Beer Name input" type="text" (keyup)="updateRequest({beer_name: beer_name})"
+    Search by Beer Name:
+    <input aria-label="Beer Name input" type="text" (keyup)="updateSearch(beer_name)"
       [(ngModel)]="beer_name" placeholder="Search by name" />
   </label>
 </section>
 <section class="BeersList">
   <a class="beer" *ngFor="let beer of beers$ | async" [routerLink]="'/beers/' + beer.id">
-    <h4>
-      {{ beer.name }}
-    </h4>
-    <p>
-      {{ beer.tagline }}
-    </p>
+    <h4> {{ beer.name }} </h4>
+    <p> {{ beer.tagline }} </p>
     <img src="{{ beer.image_url }}" alt="beer image" />
   </a>
 </section>

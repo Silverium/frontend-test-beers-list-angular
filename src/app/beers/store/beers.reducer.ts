@@ -1,5 +1,5 @@
 import { BeersState } from "./beers.state-type";
-import { FETCH_BEERS_RESPONSE, FETCH_BEER_RESPONSE, FETCH_BEER_REQUEST, FETCH_BEERS_REQUEST } from "./beers.actions";
+import { FETCH_BEERS_RESPONSE, FETCH_BEER_RESPONSE, FETCH_BEER_REQUEST, FETCH_BEERS_REQUEST, FETCH_BEERS_INFINITE_RESPONSE, CLEAR_BEERS_LIST } from "./beers.actions";
 import { GenericAction } from "../../models";
 
 const initialState: BeersState = {
@@ -22,6 +22,16 @@ export const beersReducer = (state = initialState, action: GenericAction) => {
 
       return <BeersState>{ ...state, beers };
     }
+    case FETCH_BEERS_INFINITE_RESPONSE: {
+      const beers = action.payload;
+      try {
+        localStorage.setItem(LAST_BEERS_LIST, JSON.stringify(beers));
+      } catch (error) {
+        console.info('%cvariable: error trying to save lastBeersList', 'background-color: lime;', error);
+      }
+
+      return <BeersState>{ ...state, beers: [...state.beers, ...beers] };
+    }
     case FETCH_BEERS_REQUEST: {
       try {
         const newQuery = JSON.stringify(action.payload);
@@ -38,6 +48,10 @@ export const beersReducer = (state = initialState, action: GenericAction) => {
 
         return state
       }
+    }
+    
+    case CLEAR_BEERS_LIST: {
+      return <BeersState>{ ...state, beers: [] };
     }
 
     case FETCH_BEER_RESPONSE: {

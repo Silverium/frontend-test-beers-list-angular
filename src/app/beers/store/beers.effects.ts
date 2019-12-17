@@ -9,6 +9,9 @@ import {
   fetchBeerResponse,
   fetchBeersListFailed,
   fetchBeersListResponse,
+  FETCH_BEERS_INFINITE,
+  fetchBeersListInfinite,
+  fetchBeersListInfiniteResponse,
 } from "./beers.actions";
 import { of } from "rxjs/index";
 
@@ -20,6 +23,12 @@ export class BeersEffects {
     ofType(FETCH_BEERS_REQUEST),
     switchMap((action:GenericAction) => this.beersService.getBeers(action.payload)),
     map(res => fetchBeersListResponse(res)),
+    catchError(() => of(fetchBeersListFailed()))
+  );
+  @Effect() fetchBeersInfinite = this.actions$.pipe(
+    ofType(FETCH_BEERS_INFINITE),
+    switchMap((action:GenericAction) => this.beersService.getBeers(action.payload)),
+    map(res => fetchBeersListInfiniteResponse(res)),
     catchError(() => of(fetchBeersListFailed()))
   );
   @Effect() fetchPaginatedBeers = this.actions$.pipe(

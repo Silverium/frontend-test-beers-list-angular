@@ -5,12 +5,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DrinksState } from '../store';
 
-import { PaginatedComponent } from './paginated.component';
+import { InfiniteComponent } from './infinite.component';
 
-describe('PaginatedComponent', () => {
-  let component: PaginatedComponent;
+describe('InfiniteComponent', () => {
+  let component: InfiniteComponent;
   let store: Store<DrinksState>;
-  let fixture: ComponentFixture<PaginatedComponent>;
+  let fixture: ComponentFixture<InfiniteComponent>;
   const fakeNavigate = {
     navigate: jasmine.createSpy("navigate")
   };
@@ -25,7 +25,7 @@ describe('PaginatedComponent', () => {
   } as ActivatedRoute;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PaginatedComponent],
+      declarations: [InfiniteComponent],
       imports: [
         StoreModule.forRoot({
         }),
@@ -47,7 +47,7 @@ describe('PaginatedComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaginatedComponent);
+    fixture = TestBed.createComponent(InfiniteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

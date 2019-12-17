@@ -1,3 +1,4 @@
+import { InfiniteComponent } from './infinite/infinite.component';
 import { PaginatedComponent } from './paginated/paginated.component';
 import { BeerDetailComponent } from './beer-detail/beer-detail.component';
 import { Routes } from '@angular/router';
@@ -12,6 +13,10 @@ export const BeersRouting: Routes = [
   {
     path: 'beers/paginated',
     component: PaginatedComponent
+  },
+  {
+    path: 'beers/infinite',
+    component: InfiniteComponent
   },
   {
     path: 'beers/:id',

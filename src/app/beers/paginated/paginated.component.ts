@@ -24,7 +24,6 @@ export class PaginatedComponent implements OnInit {
 
   ngOnInit() {
     this.beers$ = this.store.pipe(select(getBeersSelector));
-    // this.page$ = 1;
     this.updateRequest = (queryParams: BeersQuery) => this.router.navigate(
       ['beers', 'paginated'],
       {
