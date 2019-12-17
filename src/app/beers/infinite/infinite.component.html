@@ -4,8 +4,9 @@
     <input aria-label="Beer Name input" type="text" (keyup)="updateSearch(beer_name)"
       [(ngModel)]="beer_name" placeholder="Search by name" />
   </label>
+  <button *ngIf="showGoToTop$ | async" (click)="goToTop()" >Go to top </button>
 </section>
-<section class="BeersList">
+<section class="BeersList" id="beerList">
   <a class="beer" *ngFor="let beer of beers$ | async" [routerLink]="'/beers/' + beer.id">
     <h4> {{ beer.name }} </h4>
     <p> {{ beer.tagline }} </p>
