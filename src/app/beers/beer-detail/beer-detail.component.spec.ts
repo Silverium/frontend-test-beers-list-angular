@@ -5,7 +5,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
 import { DrinksState } from '../store';
 
-import { BeerDetailComponent } from './beer-detail.component';
+import { BeerDetailComponent, roundToX } from './beer-detail.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 const mockedBeer = {
@@ -106,8 +106,8 @@ describe('BeerDetailComponent', () => {
       const hasText = fixture.debugElement.nativeElement.textContent.includes(mockedBeer.contributed_by)
       expect(hasText).toBe(true);
     });
-    it('should include the contributors', () => {
-      const hasText = fixture.debugElement.nativeElement.textContent.includes(mockedBeer.target_og - mockedBeer.target_fg)
+    it('should include the gravity difference', () => {
+      const hasText = fixture.debugElement.nativeElement.textContent.includes(roundToX(mockedBeer.target_og - mockedBeer.target_fg, 2))
       expect(hasText).toBe(true);
     });
   });

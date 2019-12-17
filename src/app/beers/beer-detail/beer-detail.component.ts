@@ -5,6 +5,9 @@ import { Observable } from 'rxjs/index';
 import { getBeerDetailSelector } from '../store/beers.selectors';
 import { ActivatedRoute } from '@angular/router';
 import { fetchBeerRequest } from '../store/beers.actions';
+export const roundToX = (num, X) => {
+  return +(Math.round(Number(num + "e+" + X)) + "e-" + X);
+}
 @Component({
   selector: 'app-beer-detail',
   templateUrl: './beer-detail.component.html',
@@ -13,6 +16,7 @@ import { fetchBeerRequest } from '../store/beers.actions';
 export class BeerDetailComponent implements OnInit {
   public beerDetail$: Observable<any>;
   public id$: number;
+  public roundToX: Function;
 
   constructor(
     private store: Store<DrinksState>,
@@ -20,6 +24,7 @@ export class BeerDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.roundToX=roundToX;
     this.beerDetail$ = this.store.pipe(select(getBeerDetailSelector));
     this.route.params.subscribe((params) => {
       const { id } = params;

@@ -79,7 +79,7 @@ export class InfiniteComponent implements OnInit, DoCheck {
       });
     };
 
-    const queryParams = this.route.snapshot.queryParams;
+    const queryParams = this.route.snapshot.queryParams || {};
 
     if (Object.entries(queryParams).length) {
       this.updateSearch(queryParams.beer_name);

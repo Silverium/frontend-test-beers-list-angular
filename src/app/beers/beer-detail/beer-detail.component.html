@@ -24,7 +24,7 @@
       Show Gravity Difference
     </button>
     <p [class.invisible]="!showGravityDifference">
-      Graviti difference is {{ beer.target_og - beer.target_fg }}
+      Graviti difference is {{ roundToX(beer.target_og - beer.target_fg, 2) }}
     </p>
   </section>
 </section>
