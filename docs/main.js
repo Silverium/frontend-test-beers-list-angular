@@ -2331,71 +2331,6 @@ $metadata.exp({ metadata: function metadata(metadataKey, metadataValue) {
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html":
-/*!**************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"Toolbar\">\n  <a [routerLink]=\"'/beers/'\"> Initial App </a>\n  <a [routerLink]=\"'/beers/paginated'\"> Paginated list </a>\n  <a [routerLink]=\"'/beers/infinite'\"> Infinite list </a>\n</section>\n<router-outlet></router-outlet>\n");
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/beers/beer-detail/beer-detail.component.html":
-/*!****************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/beers/beer-detail/beer-detail.component.html ***!
-  \****************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"Toolbar\">\n  <a [class.disabled]=\"id$ <= 1\" [routerLink]=\"['/beers', +id$ - 1]\">Previous</a>\n  <p>{{ id$ }}</p>\n  <a [routerLink]=\"['/beers', +id$ + 1]\">Next</a>\n</section>\n<section class=\"BeerDetail\" *ngIf=\"beerDetail$ | async as beer; else loadingBlock\">\n  <img src=\"{{ beer.image_url }}\" alt=\"beer image\" />\n  <section class=\"beer\">\n    <h2>{{ beer.name }}</h2>\n    <h3>Description</h3>\n    <p>{{ beer.description }}</p>\n    <p id=\"first_brewed\">First brewed: {{ beer.first_brewed }}</p>\n    <p id=\"abv\">Alcohol By Volume: {{ beer.abv }}</p>\n    <p id=\"ibu\">International Bittering Unit: {{ beer.ibu }}</p>\n    <h3>Food pairing: </h3>\n    <ul id=\"food_pairing\">\n      <li *ngFor=\"let pairing of beer.food_pairing\">\n        {{ pairing }}\n      </li>\n    </ul>\n    <h3>Contributed by</h3>\n    <p id=\"contributed_by\">{{ beer.contributed_by }}</p>\n    <button (click)=\"showGravityDifference = true\">\n      Show Gravity Difference\n    </button>\n    <p [class.invisible]=\"!showGravityDifference\">\n      Graviti difference is {{ roundToX(beer.target_og - beer.target_fg, 2) }}\n    </p>\n  </section>\n</section>\n<ng-template #loadingBlock>Loading...</ng-template>\n");
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/beers/beer-list/beer-list.component.html":
-/*!************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/beers/beer-list/beer-list.component.html ***!
-  \************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"Toolbar\">\n  <label>\n    Search Beers:\n    <input aria-label=\"Beer Name input\" type=\"text\" (keyup)=\"updateRequest({beer_name: beer_name})\"\n      [(ngModel)]=\"beer_name\" placeholder=\"Search by name\" />\n  </label>\n</section>\n<section class=\"BeersList\">\n  <a class=\"beer\" *ngFor=\"let beer of beers$ | async\" [routerLink]=\"'/beers/' + beer.id\">\n    <h4>\n      {{ beer.name }}\n    </h4>\n    <p>\n      {{ beer.tagline }}\n    </p>\n    <img src=\"{{ beer.image_url }}\" alt=\"beer image\" />\n  </a>\n</section>\n");
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/beers/infinite/infinite.component.html":
-/*!**********************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/beers/infinite/infinite.component.html ***!
-  \**********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"Toolbar\">\n  <label>\n    Search by Beer Name:\n    <input aria-label=\"Beer Name input\" type=\"text\" (keyup)=\"updateSearch(beer_name)\"\n      [(ngModel)]=\"beer_name\" placeholder=\"Search by name\" />\n  </label>\n  <button *ngIf=\"showGoToTop$ | async\" (click)=\"goToTop()\" >Go to top </button>\n</section>\n<section class=\"BeersList\" id=\"beerList\">\n  <a class=\"beer\" *ngFor=\"let beer of beers$ | async\" [routerLink]=\"'/beers/' + beer.id\">\n    <h4> {{ beer.name }} </h4>\n    <p> {{ beer.tagline }} </p>\n    <img src=\"{{ beer.image_url }}\" alt=\"beer image\" />\n  </a>\n</section>\n");
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/beers/paginated/paginated.component.html":
-/*!************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/beers/paginated/paginated.component.html ***!
-  \************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"Toolbar\">\n  <label>\n    Search by Beer Name:\n    <input aria-label=\"Beer Name input\" type=\"text\" (keyup)=\"updateRequest({beer_name: beer_name})\"\n      [(ngModel)]=\"beer_name\" placeholder=\"Search by name\" />\n  </label>\n  <div>\n    <button *ngIf=\"page$ > 1\" (click)=\"updateRequest({page: 1})\">First</button>\n    <button [disabled]=\"page$ <= 1\" (click)=\"updateRequest({page: +page$ - 1})\">Previous</button>\n    {{ page$ }}\n    <button (click)=\"updateRequest({page:+page$ + 1})\">Next</button>\n  </div>\n</section>\n<section class=\"BeersList\">\n  <a class=\"beer\" *ngFor=\"let beer of beers$ | async\" [routerLink]=\"'/beers/' + beer.id\">\n    <h4> {{ beer.name }} </h4>\n    <p> {{ beer.tagline }} </p>\n    <img src=\"{{ beer.image_url }}\" alt=\"beer image\" />\n  </a>\n</section>\n");
-
-/***/ }),
-
 /***/ "./node_modules/rxjs/_esm5/index.js":
 /*!******************************************!*\
   !*** ./node_modules/rxjs/_esm5/index.js ***!
@@ -8536,19 +8471,6 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
-/***/ "./src/app/app.component.scss":
-/*!************************************!*\
-  !*** ./src/app/app.component.scss ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */");
-
-/***/ }),
-
 /***/ "./src/app/app.component.ts":
 /*!**********************************!*\
   !*** ./src/app/app.component.ts ***!
@@ -8559,30 +8481,47 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
+
+
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
     }
-    AppComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-root',
-            template: __importDefault(__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
-            styles: [__importDefault(__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")).default]
-        })
-    ], AppComponent);
+    AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };
+    AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 8, vars: 3, consts: [[1, "Toolbar"], [3, "routerLink"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "section", 0);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Initial App ");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Paginated list ");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " Infinite list ");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "router-outlet");
+        } if (rf & 2) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", "/beers/");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", "/beers/paginated");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", "/beers/infinite");
+        } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterLinkWithHref"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterOutlet"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */"] });
     return AppComponent;
 }());
 
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+                selector: 'app-root',
+                templateUrl: './app.component.html',
+                styleUrls: ['./app.component.scss']
+            }]
+    }], null, null); })();
 
 
 /***/ }),
@@ -8597,25 +8536,21 @@ var AppComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
-/* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/fesm5/store-devtools.js");
+/* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/__ivy_ngcc__/fesm5/store-devtools.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
 /* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
 /* harmony import */ var _beers_beers_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./beers/beers.module */ "./src/app/beers/beers.module.ts");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm5/store.js");
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/__ivy_ngcc__/fesm5/effects.js");
+
+
+
+
+
 
 
 
@@ -8629,12 +8564,8 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
-    AppModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
-            declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]
-            ],
-            imports: [
+    AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]] });
+    AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [], imports: [[
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_6__["AppRoutes"]),
                 _ngrx_store__WEBPACK_IMPORTED_MODULE_8__["StoreModule"].forRoot({}),
@@ -8644,14 +8575,32 @@ var AppModule = /** @class */ (function () {
                     logOnly: _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production,
                 }),
                 _beers_beers_module__WEBPACK_IMPORTED_MODULE_7__["BeersModule"]
-            ],
-            providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
-        })
-    ], AppModule);
+            ]] });
     return AppModule;
 }());
 
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"], _ngrx_store__WEBPACK_IMPORTED_MODULE_8__["StoreRootModule"], _ngrx_effects__WEBPACK_IMPORTED_MODULE_9__["EffectsRootModule"], _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_0__["StoreDevtoolsModule"], _beers_beers_module__WEBPACK_IMPORTED_MODULE_7__["BeersModule"]] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵsetClassMetadata"](AppModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"],
+        args: [{
+                declarations: [
+                    _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]
+                ],
+                imports: [
+                    _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
+                    _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_6__["AppRoutes"]),
+                    _ngrx_store__WEBPACK_IMPORTED_MODULE_8__["StoreModule"].forRoot({}),
+                    _ngrx_effects__WEBPACK_IMPORTED_MODULE_9__["EffectsModule"].forRoot([]),
+                    _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_0__["StoreDevtoolsModule"].instrument({
+                        maxAge: 25,
+                        logOnly: _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production,
+                    }),
+                    _beers_beers_module__WEBPACK_IMPORTED_MODULE_7__["BeersModule"]
+                ],
+                providers: [],
+                bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+            }]
+    }], null, null); })();
 
 
 /***/ }),
@@ -8666,27 +8615,11 @@ var AppModule = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutes", function() { return AppRoutes; });
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 var AppRoutes = [
     { path: '', redirectTo: '/beers', pathMatch: 'full' },
     { path: '**', redirectTo: '/beers', pathMatch: 'full' }
 ];
 
-
-/***/ }),
-
-/***/ "./src/app/beers/beer-detail/beer-detail.component.scss":
-/*!**************************************************************!*\
-  !*** ./src/app/beers/beer-detail/beer-detail.component.scss ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".BeerDetail {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 50px;\n  justify-content: center;\n  align-items: center;\n}\n.BeerDetail .beer {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 400px;\n  margin: 15px;\n}\n.BeerDetail .beer h4 {\n  margin-bottom: 0;\n}\n.BeerDetail .beer h4,\n.BeerDetail .beer p {\n  text-align: center;\n}\n.BeerDetail img {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  max-height: 400px;\n}\n.BeerDetail a {\n  color: inherit;\n  text-decoration: inherit;\n}\n.BeerDetail a:hover {\n  box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.7);\n}\n@media screen and (min-width: 1420px) {\n  .BeerDetail {\n    max-width: 70%;\n    margin: 50px auto;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL2FwcC9iZWVycy9iZWVyLWRldGFpbC9iZWVyLWRldGFpbC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYmVlcnMvYmVlci1kZXRhaWwvYmVlci1kZXRhaWwuY29tcG9uZW50LnNjc3MiLCIvVXNlcnMvc29sZGUvV29ya3NwYWNlL2Zyb250ZW5kLXRlc3QtYmVlcnMtbGlzdC1hbmd1bGFyL3NyYy9zZXR1cC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0UsYUFBQTtFQUNBLGVBQUE7RUFDQSxZQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtBQ0RGO0FER0U7RUFDRSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLHNCQUFBO0VBQ0EsWUVYYztFRllkLFlBQUE7QUNESjtBREVJO0VBQ0UsZ0JBQUE7QUNBTjtBREVJOztFQUVFLGtCQUFBO0FDQU47QURHRTtFQUNFLDJCQUFBO0VBQUEsd0JBQUE7RUFBQSxtQkFBQTtFQUNBLGlCQUFBO0FDREo7QURHRTtFQUNFLGNBQUE7RUFDQSx3QkFBQTtBQ0RKO0FERUk7RUFDRSxxREFBQTtBQ0FOO0FESUU7RUFsQ0Y7SUFtQ0ksY0FBQTtJQUNBLGlCQUFBO0VDREY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL2JlZXJzL2JlZXItZGV0YWlsL2JlZXItZGV0YWlsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCBcIi4uLy4uLy4uL3NldHVwLnNjc3NcIjtcblxuLkJlZXJEZXRhaWwge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LXdyYXA6IHdyYXA7XG4gIG1hcmdpbjogNTBweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG5cbiAgLmJlZXIge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIHdpZHRoOiAkYmVlckRldGFpbFdpZHRoO1xuICAgIG1hcmdpbjogMTVweDtcbiAgICBoNCB7XG4gICAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIH1cbiAgICBoNCxcbiAgICBwIHtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG4gIH1cbiAgaW1nIHtcbiAgICBoZWlnaHQ6IGZpdC1jb250ZW50O1xuICAgIG1heC1oZWlnaHQ6IDQwMHB4O1xuICB9XG4gIGEge1xuICAgIGNvbG9yOiBpbmhlcml0O1xuICAgIHRleHQtZGVjb3JhdGlvbjogaW5oZXJpdDtcbiAgICAmOmhvdmVyIHtcbiAgICAgIGJveC1zaGFkb3c6IGluc2V0IDAgMCAxMHB4IDAgcmdiYSh3aGl0ZSwgMC43KTtcbiAgICB9XG4gIH1cblxuICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAxNDIwcHgpIHtcbiAgICBtYXgtd2lkdGg6IDcwJTtcbiAgICBtYXJnaW46IDUwcHggYXV0bztcbiAgfVxufVxuXG4iLCIuQmVlckRldGFpbCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbiAgbWFyZ2luOiA1MHB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5CZWVyRGV0YWlsIC5iZWVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIHdpZHRoOiA0MDBweDtcbiAgbWFyZ2luOiAxNXB4O1xufVxuLkJlZXJEZXRhaWwgLmJlZXIgaDQge1xuICBtYXJnaW4tYm90dG9tOiAwO1xufVxuLkJlZXJEZXRhaWwgLmJlZXIgaDQsXG4uQmVlckRldGFpbCAuYmVlciBwIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLkJlZXJEZXRhaWwgaW1nIHtcbiAgaGVpZ2h0OiBmaXQtY29udGVudDtcbiAgbWF4LWhlaWdodDogNDAwcHg7XG59XG4uQmVlckRldGFpbCBhIHtcbiAgY29sb3I6IGluaGVyaXQ7XG4gIHRleHQtZGVjb3JhdGlvbjogaW5oZXJpdDtcbn1cbi5CZWVyRGV0YWlsIGE6aG92ZXIge1xuICBib3gtc2hhZG93OiBpbnNldCAwIDAgMTBweCAwIHJnYmEoMjU1LCAyNTUsIDI1NSwgMC43KTtcbn1cbkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDE0MjBweCkge1xuICAuQmVlckRldGFpbCB7XG4gICAgbWF4LXdpZHRoOiA3MCU7XG4gICAgbWFyZ2luOiA1MHB4IGF1dG87XG4gIH1cbn0iLCIkYXBwQmFja2dyb3VuZDogIzM5OWJhYjtcbiRiZWVyTGlzdFdpZHRoOiAyMDBweDtcbiRiZWVyTGlzdEhlaWdodDogMzAwcHg7XG4kYmVlckRldGFpbFdpZHRoOiA0MDBweDtcbiJdfQ== */");
 
 /***/ }),
 
@@ -8701,28 +8634,102 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "roundToX", function() { return roundToX; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BeerDetailComponent", function() { return BeerDetailComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm5/store.js");
 /* harmony import */ var _store_beers_selectors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/beers.selectors */ "./src/app/beers/store/beers.selectors.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
 /* harmony import */ var _store_beers_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/beers.actions */ "./src/app/beers/store/beers.actions.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/common.js");
 
 
 
 
 
+
+
+
+
+function BeerDetailComponent_section_7_li_18_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    var pairing_r5 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", pairing_r5, " ");
+} }
+function BeerDetailComponent_section_7_Template(rf, ctx) { if (rf & 1) {
+    var _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "section", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "section", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "h2");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "h3");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Description");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "p", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "p", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "p", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "h3");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, "Food pairing: ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "ul", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](18, BeerDetailComponent_section_7_li_18_Template, 2, 1, "li", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "h3");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Contributed by");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "p", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "button", 13);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BeerDetailComponent_section_7_Template_button_click_23_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7); var ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r6.showGravityDifference = true; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, " Show Gravity Difference ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    var beer_r3 = ctx.ngIf;
+    var ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", beer_r3.image_url, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](beer_r3.name);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](beer_r3.description);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("First brewed: ", beer_r3.first_brewed, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Alcohol By Volume: ", beer_r3.abv, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("International Bittering Unit: ", beer_r3.ibu, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", beer_r3.food_pairing);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](beer_r3.contributed_by);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("invisible", !ctx_r0.showGravityDifference);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" Graviti difference is ", ctx_r0.roundToX(beer_r3.target_og - beer_r3.target_fg, 2), " ");
+} }
+function BeerDetailComponent_ng_template_9_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](0, "Loading...");
+} }
+var _c0 = function (a1) { return ["/beers", a1]; };
 var roundToX = function (num, X) {
     return +(Math.round(Number(num + "e+" + X)) + "e-" + X);
 };
@@ -8741,36 +8748,46 @@ var BeerDetailComponent = /** @class */ (function () {
             _this.store.dispatch(Object(_store_beers_actions__WEBPACK_IMPORTED_MODULE_4__["fetchBeerRequest"])(id));
         });
     };
-    BeerDetailComponent.ctorParameters = function () { return [
-        { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_1__["Store"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] }
-    ]; };
-    BeerDetailComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-beer-detail',
-            template: __importDefault(__webpack_require__(/*! raw-loader!./beer-detail.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/beers/beer-detail/beer-detail.component.html")).default,
-            styles: [__importDefault(__webpack_require__(/*! ./beer-detail.component.scss */ "./src/app/beers/beer-detail/beer-detail.component.scss")).default]
-        }),
-        __metadata("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["Store"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
-    ], BeerDetailComponent);
+    BeerDetailComponent.ɵfac = function BeerDetailComponent_Factory(t) { return new (t || BeerDetailComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["Store"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"])); };
+    BeerDetailComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: BeerDetailComponent, selectors: [["app-beer-detail"]], decls: 11, vars: 13, consts: [[1, "Toolbar"], [3, "routerLink"], ["class", "BeerDetail", 4, "ngIf", "ngIfElse"], ["loadingBlock", ""], [1, "BeerDetail"], ["alt", "beer image", 3, "src"], [1, "beer"], ["id", "first_brewed"], ["id", "abv"], ["id", "ibu"], ["id", "food_pairing"], [4, "ngFor", "ngForOf"], ["id", "contributed_by"], [3, "click"]], template: function BeerDetailComponent_Template(rf, ctx) { if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "section", 0);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Previous");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "p");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Next");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, BeerDetailComponent_section_7_Template, 27, 11, "section", 2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](8, "async");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, BeerDetailComponent_ng_template_9_Template, 1, 0, "ng-template", null, 3, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
+        } if (rf & 2) {
+            var _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](10);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("disabled", ctx.id$ <= 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](9, _c0, ctx.id$ - 0 - 1));
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.id$);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](11, _c0, ctx.id$ - 0 + 1));
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](8, 7, ctx.beerDetail$))("ngIfElse", _r1);
+        } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLinkWithHref"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["AsyncPipe"]], styles: [".BeerDetail[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 50px;\n  justify-content: center;\n  align-items: center;\n}\n.BeerDetail[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 400px;\n  margin: 15px;\n}\n.BeerDetail[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%] {\n  margin-bottom: 0;\n}\n.BeerDetail[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%], .BeerDetail[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  text-align: center;\n}\n.BeerDetail[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  max-height: 400px;\n}\n.BeerDetail[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\n.BeerDetail[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:hover {\n  box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.7);\n}\n@media screen and (min-width: 1420px) {\n  .BeerDetail[_ngcontent-%COMP%] {\n    max-width: 70%;\n    margin: 50px auto;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL2FwcC9iZWVycy9iZWVyLWRldGFpbC9iZWVyLWRldGFpbC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYmVlcnMvYmVlci1kZXRhaWwvYmVlci1kZXRhaWwuY29tcG9uZW50LnNjc3MiLCIvVXNlcnMvc29sZGUvV29ya3NwYWNlL2Zyb250ZW5kLXRlc3QtYmVlcnMtbGlzdC1hbmd1bGFyL3NyYy9zZXR1cC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0UsYUFBQTtFQUNBLGVBQUE7RUFDQSxZQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtBQ0RGO0FER0U7RUFDRSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLHNCQUFBO0VBQ0EsWUVYYztFRllkLFlBQUE7QUNESjtBREVJO0VBQ0UsZ0JBQUE7QUNBTjtBREVJOztFQUVFLGtCQUFBO0FDQU47QURHRTtFQUNFLDJCQUFBO0VBQUEsd0JBQUE7RUFBQSxtQkFBQTtFQUNBLGlCQUFBO0FDREo7QURHRTtFQUNFLGNBQUE7RUFDQSx3QkFBQTtBQ0RKO0FERUk7RUFDRSxxREFBQTtBQ0FOO0FESUU7RUFsQ0Y7SUFtQ0ksY0FBQTtJQUNBLGlCQUFBO0VDREY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL2JlZXJzL2JlZXItZGV0YWlsL2JlZXItZGV0YWlsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCBcIi4uLy4uLy4uL3NldHVwLnNjc3NcIjtcblxuLkJlZXJEZXRhaWwge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LXdyYXA6IHdyYXA7XG4gIG1hcmdpbjogNTBweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG5cbiAgLmJlZXIge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIHdpZHRoOiAkYmVlckRldGFpbFdpZHRoO1xuICAgIG1hcmdpbjogMTVweDtcbiAgICBoNCB7XG4gICAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIH1cbiAgICBoNCxcbiAgICBwIHtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG4gIH1cbiAgaW1nIHtcbiAgICBoZWlnaHQ6IGZpdC1jb250ZW50O1xuICAgIG1heC1oZWlnaHQ6IDQwMHB4O1xuICB9XG4gIGEge1xuICAgIGNvbG9yOiBpbmhlcml0O1xuICAgIHRleHQtZGVjb3JhdGlvbjogaW5oZXJpdDtcbiAgICAmOmhvdmVyIHtcbiAgICAgIGJveC1zaGFkb3c6IGluc2V0IDAgMCAxMHB4IDAgcmdiYSh3aGl0ZSwgMC43KTtcbiAgICB9XG4gIH1cblxuICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAxNDIwcHgpIHtcbiAgICBtYXgtd2lkdGg6IDcwJTtcbiAgICBtYXJnaW46IDUwcHggYXV0bztcbiAgfVxufVxuXG4iLCIuQmVlckRldGFpbCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbiAgbWFyZ2luOiA1MHB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5CZWVyRGV0YWlsIC5iZWVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIHdpZHRoOiA0MDBweDtcbiAgbWFyZ2luOiAxNXB4O1xufVxuLkJlZXJEZXRhaWwgLmJlZXIgaDQge1xuICBtYXJnaW4tYm90dG9tOiAwO1xufVxuLkJlZXJEZXRhaWwgLmJlZXIgaDQsXG4uQmVlckRldGFpbCAuYmVlciBwIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLkJlZXJEZXRhaWwgaW1nIHtcbiAgaGVpZ2h0OiBmaXQtY29udGVudDtcbiAgbWF4LWhlaWdodDogNDAwcHg7XG59XG4uQmVlckRldGFpbCBhIHtcbiAgY29sb3I6IGluaGVyaXQ7XG4gIHRleHQtZGVjb3JhdGlvbjogaW5oZXJpdDtcbn1cbi5CZWVyRGV0YWlsIGE6aG92ZXIge1xuICBib3gtc2hhZG93OiBpbnNldCAwIDAgMTBweCAwIHJnYmEoMjU1LCAyNTUsIDI1NSwgMC43KTtcbn1cbkBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDE0MjBweCkge1xuICAuQmVlckRldGFpbCB7XG4gICAgbWF4LXdpZHRoOiA3MCU7XG4gICAgbWFyZ2luOiA1MHB4IGF1dG87XG4gIH1cbn0iLCIkYXBwQmFja2dyb3VuZDogIzM5OWJhYjtcbiRiZWVyTGlzdFdpZHRoOiAyMDBweDtcbiRiZWVyTGlzdEhlaWdodDogMzAwcHg7XG4kYmVlckRldGFpbFdpZHRoOiA0MDBweDtcbiJdfQ== */"] });
     return BeerDetailComponent;
 }());
 
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BeerDetailComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+                selector: 'app-beer-detail',
+                templateUrl: './beer-detail.component.html',
+                styleUrls: ['./beer-detail.component.scss']
+            }]
+    }], function () { return [{ type: _ngrx_store__WEBPACK_IMPORTED_MODULE_1__["Store"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] }]; }, null); })();
 
-
-/***/ }),
-
-/***/ "./src/app/beers/beer-list/beer-list.component.scss":
-/*!**********************************************************!*\
-  !*** ./src/app/beers/beer-list/beer-list.component.scss ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".BeersList {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 50px;\n  justify-content: center;\n  align-items: center;\n}\n.BeersList .beer {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 200px;\n  height: 300px;\n  margin: 15px;\n}\n.BeersList .beer h4 {\n  margin-bottom: 0;\n}\n.BeersList .beer h4,\n.BeersList .beer p {\n  text-align: center;\n}\n.BeersList .beer img {\n  height: 50%;\n}\n.BeersList a {\n  color: inherit;\n  text-decoration: inherit;\n}\n.BeersList a:hover {\n  box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.7);\n  text-shadow: none;\n}\n@media screen and (min-width: 1420px) {\n  .BeersList {\n    max-width: 70%;\n    margin: 50px auto;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL2FwcC9iZWVycy9iZWVyLWxpc3QvYmVlci1saXN0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9iZWVycy9iZWVyLWxpc3QvYmVlci1saXN0LmNvbXBvbmVudC5zY3NzIiwiL1VzZXJzL3NvbGRlL1dvcmtzcGFjZS9mcm9udGVuZC10ZXN0LWJlZXJzLWxpc3QtYW5ndWxhci9zcmMvc2V0dXAuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNFLGFBQUE7RUFDQSxlQUFBO0VBQ0EsWUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7QUNBRjtBREVFO0VBQ0UsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLFlFWlk7RUZhWixhRVphO0VGYWIsWUFBQTtBQ0FKO0FEQ0k7RUFDRSxnQkFBQTtBQ0NOO0FEQ0k7O0VBRUUsa0JBQUE7QUNDTjtBRENJO0VBQ0UsV0FBQTtBQ0NOO0FERUU7RUFDRSxjQUFBO0VBQ0Esd0JBQUE7QUNBSjtBRENJO0VBQ0UscURBQUE7RUFDQSxpQkFBQTtBQ0NOO0FER0U7RUFuQ0Y7SUFvQ0ksY0FBQTtJQUNBLGlCQUFBO0VDQUY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL2JlZXJzL2JlZXItbGlzdC9iZWVyLWxpc3QuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IFwiLi4vLi4vLi4vc2V0dXAuc2Nzc1wiO1xuLkJlZXJzTGlzdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbiAgbWFyZ2luOiA1MHB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcblxuICAuYmVlciB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgd2lkdGg6ICRiZWVyTGlzdFdpZHRoO1xuICAgIGhlaWdodDogJGJlZXJMaXN0SGVpZ2h0O1xuICAgIG1hcmdpbjogMTVweDtcbiAgICBoNCB7XG4gICAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIH1cbiAgICBoNCxcbiAgICBwIHtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG4gICAgaW1nIHtcbiAgICAgIGhlaWdodDogNTAlO1xuICAgIH1cbiAgfVxuICBhIHtcbiAgICBjb2xvcjogaW5oZXJpdDtcbiAgICB0ZXh0LWRlY29yYXRpb246IGluaGVyaXQ7XG4gICAgJjpob3ZlciB7XG4gICAgICBib3gtc2hhZG93OiBpbnNldCAwIDAgMTBweCAwIHJnYmEod2hpdGUsIDAuNyk7XG4gICAgICB0ZXh0LXNoYWRvdzogbm9uZTtcbiAgICB9XG4gIH1cblxuICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAxNDIwcHgpIHtcbiAgICBtYXgtd2lkdGg6IDcwJTtcbiAgICBtYXJnaW46IDUwcHggYXV0bztcbiAgfVxufVxuXG4iLCIuQmVlcnNMaXN0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xuICBtYXJnaW46IDUwcHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLkJlZXJzTGlzdCAuYmVlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICB3aWR0aDogMjAwcHg7XG4gIGhlaWdodDogMzAwcHg7XG4gIG1hcmdpbjogMTVweDtcbn1cbi5CZWVyc0xpc3QgLmJlZXIgaDQge1xuICBtYXJnaW4tYm90dG9tOiAwO1xufVxuLkJlZXJzTGlzdCAuYmVlciBoNCxcbi5CZWVyc0xpc3QgLmJlZXIgcCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5CZWVyc0xpc3QgLmJlZXIgaW1nIHtcbiAgaGVpZ2h0OiA1MCU7XG59XG4uQmVlcnNMaXN0IGEge1xuICBjb2xvcjogaW5oZXJpdDtcbiAgdGV4dC1kZWNvcmF0aW9uOiBpbmhlcml0O1xufVxuLkJlZXJzTGlzdCBhOmhvdmVyIHtcbiAgYm94LXNoYWRvdzogaW5zZXQgMCAwIDEwcHggMCByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNyk7XG4gIHRleHQtc2hhZG93OiBub25lO1xufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogMTQyMHB4KSB7XG4gIC5CZWVyc0xpc3Qge1xuICAgIG1heC13aWR0aDogNzAlO1xuICAgIG1hcmdpbjogNTBweCBhdXRvO1xuICB9XG59IiwiJGFwcEJhY2tncm91bmQ6ICMzOTliYWI7XG4kYmVlckxpc3RXaWR0aDogMjAwcHg7XG4kYmVlckxpc3RIZWlnaHQ6IDMwMHB4O1xuJGJlZXJEZXRhaWxXaWR0aDogNDAwcHg7XG4iXX0= */");
 
 /***/ }),
 
@@ -8784,28 +8801,43 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BeerListComponent", function() { return BeerListComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
 /* harmony import */ var _store_beers_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/beers.actions */ "./src/app/beers/store/beers.actions.ts");
 /* harmony import */ var _store_beers_selectors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/beers.selectors */ "./src/app/beers/store/beers.selectors.ts");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm5/store.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm5/forms.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/common.js");
 
 
 
 
 
+
+
+
+
+
+function BeerListComponent_a_5_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h4");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](5, "img", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    var beer_r1 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", "/beers/" + beer_r1.id);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", beer_r1.name, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", beer_r1.tagline, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", beer_r1.image_url, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+} }
 var BeerListComponent = /** @class */ (function () {
     function BeerListComponent(store, route, router) {
         this.store = store;
@@ -8824,24 +8856,37 @@ var BeerListComponent = /** @class */ (function () {
             _this.store.dispatch(Object(_store_beers_actions__WEBPACK_IMPORTED_MODULE_1__["fetchBeersListRequest"])(query));
         });
     };
-    BeerListComponent.ctorParameters = function () { return [
-        { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
-    ]; };
-    BeerListComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-beer-list',
-            template: __importDefault(__webpack_require__(/*! raw-loader!./beer-list.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/beers/beer-list/beer-list.component.html")).default,
-            styles: [__importDefault(__webpack_require__(/*! ./beer-list.component.scss */ "./src/app/beers/beer-list/beer-list.component.scss")).default]
-        }),
-        __metadata("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
-    ], BeerListComponent);
+    BeerListComponent.ɵfac = function BeerListComponent_Factory(t) { return new (t || BeerListComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"])); };
+    BeerListComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: BeerListComponent, selectors: [["app-beer-list"]], decls: 7, vars: 4, consts: [[1, "Toolbar"], ["aria-label", "Beer Name input", "type", "text", "placeholder", "Search by name", 3, "ngModel", "keyup", "ngModelChange"], [1, "BeersList"], ["class", "beer", 3, "routerLink", 4, "ngFor", "ngForOf"], [1, "beer", 3, "routerLink"], ["alt", "beer image", 3, "src"]], template: function BeerListComponent_Template(rf, ctx) { if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "section", 0);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "label");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Search Beers: ");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "input", 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("keyup", function BeerListComponent_Template_input_keyup_3_listener() { return ctx.updateRequest({ beer_name: ctx.beer_name }); })("ngModelChange", function BeerListComponent_Template_input_ngModelChange_3_listener($event) { return ctx.beer_name = $event; });
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "section", 2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, BeerListComponent_a_5_Template, 6, 4, "a", 3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](6, "async");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        } if (rf & 2) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.beer_name);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](6, 2, ctx.beers$));
+        } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterLinkWithHref"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_6__["AsyncPipe"]], styles: [".BeersList[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 50px;\n  justify-content: center;\n  align-items: center;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 200px;\n  height: 300px;\n  margin: 15px;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%] {\n  margin-bottom: 0;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%], .BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  text-align: center;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  height: 50%;\n}\n.BeersList[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\n.BeersList[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:hover {\n  box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.7);\n  text-shadow: none;\n}\n@media screen and (min-width: 1420px) {\n  .BeersList[_ngcontent-%COMP%] {\n    max-width: 70%;\n    margin: 50px auto;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL2FwcC9iZWVycy9iZWVyLWxpc3QvYmVlci1saXN0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9iZWVycy9iZWVyLWxpc3QvYmVlci1saXN0LmNvbXBvbmVudC5zY3NzIiwiL1VzZXJzL3NvbGRlL1dvcmtzcGFjZS9mcm9udGVuZC10ZXN0LWJlZXJzLWxpc3QtYW5ndWxhci9zcmMvc2V0dXAuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNFLGFBQUE7RUFDQSxlQUFBO0VBQ0EsWUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7QUNBRjtBREVFO0VBQ0UsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLFlFWlk7RUZhWixhRVphO0VGYWIsWUFBQTtBQ0FKO0FEQ0k7RUFDRSxnQkFBQTtBQ0NOO0FEQ0k7O0VBRUUsa0JBQUE7QUNDTjtBRENJO0VBQ0UsV0FBQTtBQ0NOO0FERUU7RUFDRSxjQUFBO0VBQ0Esd0JBQUE7QUNBSjtBRENJO0VBQ0UscURBQUE7RUFDQSxpQkFBQTtBQ0NOO0FER0U7RUFuQ0Y7SUFvQ0ksY0FBQTtJQUNBLGlCQUFBO0VDQUY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL2JlZXJzL2JlZXItbGlzdC9iZWVyLWxpc3QuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IFwiLi4vLi4vLi4vc2V0dXAuc2Nzc1wiO1xuLkJlZXJzTGlzdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbiAgbWFyZ2luOiA1MHB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcblxuICAuYmVlciB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgd2lkdGg6ICRiZWVyTGlzdFdpZHRoO1xuICAgIGhlaWdodDogJGJlZXJMaXN0SGVpZ2h0O1xuICAgIG1hcmdpbjogMTVweDtcbiAgICBoNCB7XG4gICAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIH1cbiAgICBoNCxcbiAgICBwIHtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG4gICAgaW1nIHtcbiAgICAgIGhlaWdodDogNTAlO1xuICAgIH1cbiAgfVxuICBhIHtcbiAgICBjb2xvcjogaW5oZXJpdDtcbiAgICB0ZXh0LWRlY29yYXRpb246IGluaGVyaXQ7XG4gICAgJjpob3ZlciB7XG4gICAgICBib3gtc2hhZG93OiBpbnNldCAwIDAgMTBweCAwIHJnYmEod2hpdGUsIDAuNyk7XG4gICAgICB0ZXh0LXNoYWRvdzogbm9uZTtcbiAgICB9XG4gIH1cblxuICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAxNDIwcHgpIHtcbiAgICBtYXgtd2lkdGg6IDcwJTtcbiAgICBtYXJnaW46IDUwcHggYXV0bztcbiAgfVxufVxuXG4iLCIuQmVlcnNMaXN0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xuICBtYXJnaW46IDUwcHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLkJlZXJzTGlzdCAuYmVlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICB3aWR0aDogMjAwcHg7XG4gIGhlaWdodDogMzAwcHg7XG4gIG1hcmdpbjogMTVweDtcbn1cbi5CZWVyc0xpc3QgLmJlZXIgaDQge1xuICBtYXJnaW4tYm90dG9tOiAwO1xufVxuLkJlZXJzTGlzdCAuYmVlciBoNCxcbi5CZWVyc0xpc3QgLmJlZXIgcCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5CZWVyc0xpc3QgLmJlZXIgaW1nIHtcbiAgaGVpZ2h0OiA1MCU7XG59XG4uQmVlcnNMaXN0IGEge1xuICBjb2xvcjogaW5oZXJpdDtcbiAgdGV4dC1kZWNvcmF0aW9uOiBpbmhlcml0O1xufVxuLkJlZXJzTGlzdCBhOmhvdmVyIHtcbiAgYm94LXNoYWRvdzogaW5zZXQgMCAwIDEwcHggMCByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNyk7XG4gIHRleHQtc2hhZG93OiBub25lO1xufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogMTQyMHB4KSB7XG4gIC5CZWVyc0xpc3Qge1xuICAgIG1heC13aWR0aDogNzAlO1xuICAgIG1hcmdpbjogNTBweCBhdXRvO1xuICB9XG59IiwiJGFwcEJhY2tncm91bmQ6ICMzOTliYWI7XG4kYmVlckxpc3RXaWR0aDogMjAwcHg7XG4kYmVlckxpc3RIZWlnaHQ6IDMwMHB4O1xuJGJlZXJEZXRhaWxXaWR0aDogNDAwcHg7XG4iXX0= */"] });
     return BeerListComponent;
 }());
 
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BeerListComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+                selector: 'app-beer-list',
+                templateUrl: './beer-list.component.html',
+                styleUrls: ['./beer-list.component.scss']
+            }]
+    }], function () { return [{ type: _ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }]; }, null); })();
 
 
 /***/ }),
@@ -8861,25 +8906,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_beers_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/beers.effects */ "./src/app/beers/store/beers.effects.ts");
 /* harmony import */ var _beers_routing__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./beers.routing */ "./src/app/beers/beers.routing.ts");
 /* harmony import */ var _beers_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./beers.service */ "./src/app/beers/beers.service.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/common.js");
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/__ivy_ngcc__/fesm5/effects.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
 /* harmony import */ var _paginated_paginated_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./paginated/paginated.component */ "./src/app/beers/paginated/paginated.component.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm5/store.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./store */ "./src/app/beers/store/index.ts");
 /* harmony import */ var _infinite_infinite_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./infinite/infinite.component */ "./src/app/beers/infinite/infinite.component.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+
+
+
+
 
 
 
@@ -8898,30 +8938,47 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 var BeersModule = /** @class */ (function () {
     function BeersModule() {
     }
-    BeersModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_9__["NgModule"])({
-            imports: [
+    BeersModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineNgModule"]({ type: BeersModule });
+    BeersModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector"]({ factory: function BeersModule_Factory(t) { return new (t || BeersModule)(); }, providers: [
+            _beers_service__WEBPACK_IMPORTED_MODULE_4__["BeersService"],
+        ], imports: [[
                 _angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"],
                 _ngrx_effects__WEBPACK_IMPORTED_MODULE_6__["EffectsModule"].forFeature([_store_beers_effects__WEBPACK_IMPORTED_MODULE_2__["BeersEffects"]]),
                 _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"].forChild(_beers_routing__WEBPACK_IMPORTED_MODULE_3__["BeersRouting"]),
                 _ngrx_store__WEBPACK_IMPORTED_MODULE_12__["StoreModule"].forFeature('drinks', _store__WEBPACK_IMPORTED_MODULE_13__["beersReducers"]),
-            ],
-            declarations: [
-                _beer_list_beer_list_component__WEBPACK_IMPORTED_MODULE_1__["BeerListComponent"],
-                _beer_detail_beer_detail_component__WEBPACK_IMPORTED_MODULE_0__["BeerDetailComponent"],
-                _paginated_paginated_component__WEBPACK_IMPORTED_MODULE_10__["PaginatedComponent"],
-                _infinite_infinite_component__WEBPACK_IMPORTED_MODULE_14__["InfiniteComponent"]
-            ],
-            providers: [
-                _beers_service__WEBPACK_IMPORTED_MODULE_4__["BeersService"],
-            ]
-        })
-    ], BeersModule);
+            ]] });
     return BeersModule;
 }());
 
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵsetNgModuleScope"](BeersModule, { declarations: [_beer_list_beer_list_component__WEBPACK_IMPORTED_MODULE_1__["BeerListComponent"],
+        _beer_detail_beer_detail_component__WEBPACK_IMPORTED_MODULE_0__["BeerDetailComponent"],
+        _paginated_paginated_component__WEBPACK_IMPORTED_MODULE_10__["PaginatedComponent"],
+        _infinite_infinite_component__WEBPACK_IMPORTED_MODULE_14__["InfiniteComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"], _ngrx_effects__WEBPACK_IMPORTED_MODULE_6__["EffectsFeatureModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
+        _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"], _ngrx_store__WEBPACK_IMPORTED_MODULE_12__["StoreFeatureModule"]] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵsetClassMetadata"](BeersModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_9__["NgModule"],
+        args: [{
+                imports: [
+                    _angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"],
+                    _ngrx_effects__WEBPACK_IMPORTED_MODULE_6__["EffectsModule"].forFeature([_store_beers_effects__WEBPACK_IMPORTED_MODULE_2__["BeersEffects"]]),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
+                    _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"],
+                    _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"].forChild(_beers_routing__WEBPACK_IMPORTED_MODULE_3__["BeersRouting"]),
+                    _ngrx_store__WEBPACK_IMPORTED_MODULE_12__["StoreModule"].forFeature('drinks', _store__WEBPACK_IMPORTED_MODULE_13__["beersReducers"]),
+                ],
+                declarations: [
+                    _beer_list_beer_list_component__WEBPACK_IMPORTED_MODULE_1__["BeerListComponent"],
+                    _beer_detail_beer_detail_component__WEBPACK_IMPORTED_MODULE_0__["BeerDetailComponent"],
+                    _paginated_paginated_component__WEBPACK_IMPORTED_MODULE_10__["PaginatedComponent"],
+                    _infinite_infinite_component__WEBPACK_IMPORTED_MODULE_14__["InfiniteComponent"]
+                ],
+                providers: [
+                    _beers_service__WEBPACK_IMPORTED_MODULE_4__["BeersService"],
+                ]
+            }]
+    }], null, null); })();
 
 
 /***/ }),
@@ -8940,9 +8997,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _paginated_paginated_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./paginated/paginated.component */ "./src/app/beers/paginated/paginated.component.ts");
 /* harmony import */ var _beer_detail_beer_detail_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./beer-detail/beer-detail.component */ "./src/app/beers/beer-detail/beer-detail.component.ts");
 /* harmony import */ var _beer_list_beer_list_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./beer-list/beer-list.component */ "./src/app/beers/beer-list/beer-list.component.ts");
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 
 
 
@@ -8981,20 +9035,10 @@ var BeersRouting = [
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "composeQuery", function() { return composeQuery; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BeersService", function() { return BeersService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/http.js");
+
+
 
 
 var api = 'https://api.punkapi.com/v2/beers';
@@ -9020,32 +9064,18 @@ var BeersService = /** @class */ (function () {
     BeersService.prototype.getBeer = function (id) {
         return this.http.get(api + "/" + id);
     };
-    BeersService.ctorParameters = function () { return [
-        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
-    ]; };
-    BeersService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
-    ], BeersService);
+    BeersService.ɵfac = function BeersService_Factory(t) { return new (t || BeersService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
+    BeersService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: BeersService, factory: BeersService.ɵfac, providedIn: 'root' });
     return BeersService;
 }());
 
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BeersService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }]; }, null); })();
 
-
-/***/ }),
-
-/***/ "./src/app/beers/infinite/infinite.component.scss":
-/*!********************************************************!*\
-  !*** ./src/app/beers/infinite/infinite.component.scss ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".BeersList {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 50px;\n  justify-content: center;\n  align-items: center;\n}\n.BeersList .beer {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 200px;\n  height: 300px;\n  margin: 15px;\n}\n.BeersList .beer h4 {\n  margin-bottom: 0;\n}\n.BeersList .beer h4,\n.BeersList .beer p {\n  text-align: center;\n}\n.BeersList .beer img {\n  height: 50%;\n}\n.BeersList a {\n  color: inherit;\n  text-decoration: inherit;\n}\n.BeersList a:hover {\n  box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.7);\n  text-shadow: none;\n}\n@media screen and (min-width: 1420px) {\n  .BeersList {\n    max-width: 70%;\n    margin: 50px auto;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL2FwcC9iZWVycy9iZWVyLWxpc3QvYmVlci1saXN0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9iZWVycy9pbmZpbml0ZS9pbmZpbml0ZS5jb21wb25lbnQuc2NzcyIsIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL3NldHVwLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRSxhQUFBO0VBQ0EsZUFBQTtFQUNBLFlBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0FDQUY7QURFRTtFQUNFLGFBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0Esc0JBQUE7RUFDQSxZRVpZO0VGYVosYUVaYTtFRmFiLFlBQUE7QUNBSjtBRENJO0VBQ0UsZ0JBQUE7QUNDTjtBRENJOztFQUVFLGtCQUFBO0FDQ047QURDSTtFQUNFLFdBQUE7QUNDTjtBREVFO0VBQ0UsY0FBQTtFQUNBLHdCQUFBO0FDQUo7QURDSTtFQUNFLHFEQUFBO0VBQ0EsaUJBQUE7QUNDTjtBREdFO0VBbkNGO0lBb0NJLGNBQUE7SUFDQSxpQkFBQTtFQ0FGO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9iZWVycy9pbmZpbml0ZS9pbmZpbml0ZS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgXCIuLi8uLi8uLi9zZXR1cC5zY3NzXCI7XG4uQmVlcnNMaXN0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xuICBtYXJnaW46IDUwcHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuXG4gIC5iZWVyIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICB3aWR0aDogJGJlZXJMaXN0V2lkdGg7XG4gICAgaGVpZ2h0OiAkYmVlckxpc3RIZWlnaHQ7XG4gICAgbWFyZ2luOiAxNXB4O1xuICAgIGg0IHtcbiAgICAgIG1hcmdpbi1ib3R0b206IDA7XG4gICAgfVxuICAgIGg0LFxuICAgIHAge1xuICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIH1cbiAgICBpbWcge1xuICAgICAgaGVpZ2h0OiA1MCU7XG4gICAgfVxuICB9XG4gIGEge1xuICAgIGNvbG9yOiBpbmhlcml0O1xuICAgIHRleHQtZGVjb3JhdGlvbjogaW5oZXJpdDtcbiAgICAmOmhvdmVyIHtcbiAgICAgIGJveC1zaGFkb3c6IGluc2V0IDAgMCAxMHB4IDAgcmdiYSh3aGl0ZSwgMC43KTtcbiAgICAgIHRleHQtc2hhZG93OiBub25lO1xuICAgIH1cbiAgfVxuXG4gIEBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDE0MjBweCkge1xuICAgIG1heC13aWR0aDogNzAlO1xuICAgIG1hcmdpbjogNTBweCBhdXRvO1xuICB9XG59XG5cbiIsIi5CZWVyc0xpc3Qge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LXdyYXA6IHdyYXA7XG4gIG1hcmdpbjogNTBweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4uQmVlcnNMaXN0IC5iZWVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIHdpZHRoOiAyMDBweDtcbiAgaGVpZ2h0OiAzMDBweDtcbiAgbWFyZ2luOiAxNXB4O1xufVxuLkJlZXJzTGlzdCAuYmVlciBoNCB7XG4gIG1hcmdpbi1ib3R0b206IDA7XG59XG4uQmVlcnNMaXN0IC5iZWVyIGg0LFxuLkJlZXJzTGlzdCAuYmVlciBwIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLkJlZXJzTGlzdCAuYmVlciBpbWcge1xuICBoZWlnaHQ6IDUwJTtcbn1cbi5CZWVyc0xpc3QgYSB7XG4gIGNvbG9yOiBpbmhlcml0O1xuICB0ZXh0LWRlY29yYXRpb246IGluaGVyaXQ7XG59XG4uQmVlcnNMaXN0IGE6aG92ZXIge1xuICBib3gtc2hhZG93OiBpbnNldCAwIDAgMTBweCAwIHJnYmEoMjU1LCAyNTUsIDI1NSwgMC43KTtcbiAgdGV4dC1zaGFkb3c6IG5vbmU7XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAxNDIwcHgpIHtcbiAgLkJlZXJzTGlzdCB7XG4gICAgbWF4LXdpZHRoOiA3MCU7XG4gICAgbWFyZ2luOiA1MHB4IGF1dG87XG4gIH1cbn0iLCIkYXBwQmFja2dyb3VuZDogIzM5OWJhYjtcbiRiZWVyTGlzdFdpZHRoOiAyMDBweDtcbiRiZWVyTGlzdEhlaWdodDogMzAwcHg7XG4kYmVlckRldGFpbFdpZHRoOiA0MDBweDtcbiJdfQ== */");
 
 /***/ }),
 
@@ -9059,27 +9089,16 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InfiniteComponent", function() { return InfiniteComponent; });
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
 /* harmony import */ var rxjs_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/index */ "./node_modules/rxjs/index.js");
 /* harmony import */ var rxjs_index__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(rxjs_index__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _store_beers_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/beers.actions */ "./src/app/beers/store/beers.actions.ts");
 /* harmony import */ var _store_beers_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/beers.selectors */ "./src/app/beers/store/beers.selectors.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm5/store.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm5/forms.js");
 
 
 
@@ -9088,6 +9107,38 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
+
+
+
+
+function InfiniteComponent_button_4_Template(rf, ctx) { if (rf & 1) {
+    var _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function InfiniteComponent_button_4_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3); var ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r2.goToTop(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "Go to top\u00A0");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} }
+function InfiniteComponent_a_7_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "a", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](5, "img", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    var beer_r4 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("routerLink", "/beers/" + beer_r4.id);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", beer_r4.name, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", beer_r4.tagline, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", beer_r4.image_url, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+} }
 var InfiniteComponent = /** @class */ (function () {
     function InfiniteComponent(store, route, router, viewportScroller) {
         this.store = store;
@@ -9147,40 +9198,42 @@ var InfiniteComponent = /** @class */ (function () {
             _this.store.dispatch(Object(_store_beers_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBeersListInfinite"])(query));
         });
     };
-    InfiniteComponent.ctorParameters = function () { return [
-        { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_6__["Store"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_0__["ActivatedRoute"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"] },
-        { type: _angular_common__WEBPACK_IMPORTED_MODULE_7__["ViewportScroller"] }
-    ]; };
-    InfiniteComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: "app-infinite",
-            template: __importDefault(__webpack_require__(/*! raw-loader!./infinite.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/beers/infinite/infinite.component.html")).default,
-            styles: [__importDefault(__webpack_require__(/*! ./infinite.component.scss */ "./src/app/beers/infinite/infinite.component.scss")).default]
-        }),
-        __metadata("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_6__["Store"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_0__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"],
-            _angular_common__WEBPACK_IMPORTED_MODULE_7__["ViewportScroller"]])
-    ], InfiniteComponent);
+    InfiniteComponent.ɵfac = function InfiniteComponent_Factory(t) { return new (t || InfiniteComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ngrx_store__WEBPACK_IMPORTED_MODULE_6__["Store"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_0__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_7__["ViewportScroller"])); };
+    InfiniteComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: InfiniteComponent, selectors: [["app-infinite"]], decls: 9, vars: 7, consts: [[1, "Toolbar"], ["aria-label", "Beer Name input", "type", "text", "placeholder", "Search by name", 3, "ngModel", "keyup", "ngModelChange"], [3, "click", 4, "ngIf"], ["id", "beerList", 1, "BeersList"], ["class", "beer", 3, "routerLink", 4, "ngFor", "ngForOf"], [3, "click"], [1, "beer", 3, "routerLink"], ["alt", "beer image", 3, "src"]], template: function InfiniteComponent_Template(rf, ctx) { if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "section", 0);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "label");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, " Search by Beer Name: ");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "input", 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("keyup", function InfiniteComponent_Template_input_keyup_3_listener() { return ctx.updateSearch(ctx.beer_name); })("ngModelChange", function InfiniteComponent_Template_input_ngModelChange_3_listener($event) { return ctx.beer_name = $event; });
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, InfiniteComponent_button_4_Template, 2, 0, "button", 2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](5, "async");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "section", 3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](7, InfiniteComponent_a_7_Template, 6, 4, "a", 4);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](8, "async");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        } if (rf & 2) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.beer_name);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](5, 3, ctx.showGoToTop$));
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](8, 5, ctx.beers$));
+        } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_8__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgForOf"], _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterLinkWithHref"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_7__["AsyncPipe"]], styles: [".BeersList[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 50px;\n  justify-content: center;\n  align-items: center;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 200px;\n  height: 300px;\n  margin: 15px;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%] {\n  margin-bottom: 0;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%], .BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  text-align: center;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  height: 50%;\n}\n.BeersList[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\n.BeersList[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:hover {\n  box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.7);\n  text-shadow: none;\n}\n@media screen and (min-width: 1420px) {\n  .BeersList[_ngcontent-%COMP%] {\n    max-width: 70%;\n    margin: 50px auto;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL2FwcC9iZWVycy9iZWVyLWxpc3QvYmVlci1saXN0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9iZWVycy9pbmZpbml0ZS9pbmZpbml0ZS5jb21wb25lbnQuc2NzcyIsIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL3NldHVwLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRSxhQUFBO0VBQ0EsZUFBQTtFQUNBLFlBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0FDQUY7QURFRTtFQUNFLGFBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0Esc0JBQUE7RUFDQSxZRVpZO0VGYVosYUVaYTtFRmFiLFlBQUE7QUNBSjtBRENJO0VBQ0UsZ0JBQUE7QUNDTjtBRENJOztFQUVFLGtCQUFBO0FDQ047QURDSTtFQUNFLFdBQUE7QUNDTjtBREVFO0VBQ0UsY0FBQTtFQUNBLHdCQUFBO0FDQUo7QURDSTtFQUNFLHFEQUFBO0VBQ0EsaUJBQUE7QUNDTjtBREdFO0VBbkNGO0lBb0NJLGNBQUE7SUFDQSxpQkFBQTtFQ0FGO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9iZWVycy9pbmZpbml0ZS9pbmZpbml0ZS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgXCIuLi8uLi8uLi9zZXR1cC5zY3NzXCI7XG4uQmVlcnNMaXN0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xuICBtYXJnaW46IDUwcHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuXG4gIC5iZWVyIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICB3aWR0aDogJGJlZXJMaXN0V2lkdGg7XG4gICAgaGVpZ2h0OiAkYmVlckxpc3RIZWlnaHQ7XG4gICAgbWFyZ2luOiAxNXB4O1xuICAgIGg0IHtcbiAgICAgIG1hcmdpbi1ib3R0b206IDA7XG4gICAgfVxuICAgIGg0LFxuICAgIHAge1xuICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIH1cbiAgICBpbWcge1xuICAgICAgaGVpZ2h0OiA1MCU7XG4gICAgfVxuICB9XG4gIGEge1xuICAgIGNvbG9yOiBpbmhlcml0O1xuICAgIHRleHQtZGVjb3JhdGlvbjogaW5oZXJpdDtcbiAgICAmOmhvdmVyIHtcbiAgICAgIGJveC1zaGFkb3c6IGluc2V0IDAgMCAxMHB4IDAgcmdiYSh3aGl0ZSwgMC43KTtcbiAgICAgIHRleHQtc2hhZG93OiBub25lO1xuICAgIH1cbiAgfVxuXG4gIEBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDE0MjBweCkge1xuICAgIG1heC13aWR0aDogNzAlO1xuICAgIG1hcmdpbjogNTBweCBhdXRvO1xuICB9XG59XG5cbiIsIi5CZWVyc0xpc3Qge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LXdyYXA6IHdyYXA7XG4gIG1hcmdpbjogNTBweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4uQmVlcnNMaXN0IC5iZWVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIHdpZHRoOiAyMDBweDtcbiAgaGVpZ2h0OiAzMDBweDtcbiAgbWFyZ2luOiAxNXB4O1xufVxuLkJlZXJzTGlzdCAuYmVlciBoNCB7XG4gIG1hcmdpbi1ib3R0b206IDA7XG59XG4uQmVlcnNMaXN0IC5iZWVyIGg0LFxuLkJlZXJzTGlzdCAuYmVlciBwIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLkJlZXJzTGlzdCAuYmVlciBpbWcge1xuICBoZWlnaHQ6IDUwJTtcbn1cbi5CZWVyc0xpc3QgYSB7XG4gIGNvbG9yOiBpbmhlcml0O1xuICB0ZXh0LWRlY29yYXRpb246IGluaGVyaXQ7XG59XG4uQmVlcnNMaXN0IGE6aG92ZXIge1xuICBib3gtc2hhZG93OiBpbnNldCAwIDAgMTBweCAwIHJnYmEoMjU1LCAyNTUsIDI1NSwgMC43KTtcbiAgdGV4dC1zaGFkb3c6IG5vbmU7XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAxNDIwcHgpIHtcbiAgLkJlZXJzTGlzdCB7XG4gICAgbWF4LXdpZHRoOiA3MCU7XG4gICAgbWFyZ2luOiA1MHB4IGF1dG87XG4gIH1cbn0iLCIkYXBwQmFja2dyb3VuZDogIzM5OWJhYjtcbiRiZWVyTGlzdFdpZHRoOiAyMDBweDtcbiRiZWVyTGlzdEhlaWdodDogMzAwcHg7XG4kYmVlckRldGFpbFdpZHRoOiA0MDBweDtcbiJdfQ== */"] });
     return InfiniteComponent;
 }());
 
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](InfiniteComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
+        args: [{
+                selector: "app-infinite",
+                templateUrl: "./infinite.component.html",
+                styleUrls: ["./infinite.component.scss"]
+            }]
+    }], function () { return [{ type: _ngrx_store__WEBPACK_IMPORTED_MODULE_6__["Store"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_0__["ActivatedRoute"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"] }, { type: _angular_common__WEBPACK_IMPORTED_MODULE_7__["ViewportScroller"] }]; }, null); })();
 
-
-/***/ }),
-
-/***/ "./src/app/beers/paginated/paginated.component.scss":
-/*!**********************************************************!*\
-  !*** ./src/app/beers/paginated/paginated.component.scss ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".BeersList {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 50px;\n  justify-content: center;\n  align-items: center;\n}\n.BeersList .beer {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 200px;\n  height: 300px;\n  margin: 15px;\n}\n.BeersList .beer h4 {\n  margin-bottom: 0;\n}\n.BeersList .beer h4,\n.BeersList .beer p {\n  text-align: center;\n}\n.BeersList .beer img {\n  height: 50%;\n}\n.BeersList a {\n  color: inherit;\n  text-decoration: inherit;\n}\n.BeersList a:hover {\n  box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.7);\n  text-shadow: none;\n}\n@media screen and (min-width: 1420px) {\n  .BeersList {\n    max-width: 70%;\n    margin: 50px auto;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL2FwcC9iZWVycy9iZWVyLWxpc3QvYmVlci1saXN0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9iZWVycy9wYWdpbmF0ZWQvcGFnaW5hdGVkLmNvbXBvbmVudC5zY3NzIiwiL1VzZXJzL3NvbGRlL1dvcmtzcGFjZS9mcm9udGVuZC10ZXN0LWJlZXJzLWxpc3QtYW5ndWxhci9zcmMvc2V0dXAuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNFLGFBQUE7RUFDQSxlQUFBO0VBQ0EsWUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7QUNBRjtBREVFO0VBQ0UsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLFlFWlk7RUZhWixhRVphO0VGYWIsWUFBQTtBQ0FKO0FEQ0k7RUFDRSxnQkFBQTtBQ0NOO0FEQ0k7O0VBRUUsa0JBQUE7QUNDTjtBRENJO0VBQ0UsV0FBQTtBQ0NOO0FERUU7RUFDRSxjQUFBO0VBQ0Esd0JBQUE7QUNBSjtBRENJO0VBQ0UscURBQUE7RUFDQSxpQkFBQTtBQ0NOO0FER0U7RUFuQ0Y7SUFvQ0ksY0FBQTtJQUNBLGlCQUFBO0VDQUY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL2JlZXJzL3BhZ2luYXRlZC9wYWdpbmF0ZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IFwiLi4vLi4vLi4vc2V0dXAuc2Nzc1wiO1xuLkJlZXJzTGlzdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbiAgbWFyZ2luOiA1MHB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcblxuICAuYmVlciB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgd2lkdGg6ICRiZWVyTGlzdFdpZHRoO1xuICAgIGhlaWdodDogJGJlZXJMaXN0SGVpZ2h0O1xuICAgIG1hcmdpbjogMTVweDtcbiAgICBoNCB7XG4gICAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIH1cbiAgICBoNCxcbiAgICBwIHtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG4gICAgaW1nIHtcbiAgICAgIGhlaWdodDogNTAlO1xuICAgIH1cbiAgfVxuICBhIHtcbiAgICBjb2xvcjogaW5oZXJpdDtcbiAgICB0ZXh0LWRlY29yYXRpb246IGluaGVyaXQ7XG4gICAgJjpob3ZlciB7XG4gICAgICBib3gtc2hhZG93OiBpbnNldCAwIDAgMTBweCAwIHJnYmEod2hpdGUsIDAuNyk7XG4gICAgICB0ZXh0LXNoYWRvdzogbm9uZTtcbiAgICB9XG4gIH1cblxuICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAxNDIwcHgpIHtcbiAgICBtYXgtd2lkdGg6IDcwJTtcbiAgICBtYXJnaW46IDUwcHggYXV0bztcbiAgfVxufVxuXG4iLCIuQmVlcnNMaXN0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xuICBtYXJnaW46IDUwcHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLkJlZXJzTGlzdCAuYmVlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICB3aWR0aDogMjAwcHg7XG4gIGhlaWdodDogMzAwcHg7XG4gIG1hcmdpbjogMTVweDtcbn1cbi5CZWVyc0xpc3QgLmJlZXIgaDQge1xuICBtYXJnaW4tYm90dG9tOiAwO1xufVxuLkJlZXJzTGlzdCAuYmVlciBoNCxcbi5CZWVyc0xpc3QgLmJlZXIgcCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5CZWVyc0xpc3QgLmJlZXIgaW1nIHtcbiAgaGVpZ2h0OiA1MCU7XG59XG4uQmVlcnNMaXN0IGEge1xuICBjb2xvcjogaW5oZXJpdDtcbiAgdGV4dC1kZWNvcmF0aW9uOiBpbmhlcml0O1xufVxuLkJlZXJzTGlzdCBhOmhvdmVyIHtcbiAgYm94LXNoYWRvdzogaW5zZXQgMCAwIDEwcHggMCByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNyk7XG4gIHRleHQtc2hhZG93OiBub25lO1xufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogMTQyMHB4KSB7XG4gIC5CZWVyc0xpc3Qge1xuICAgIG1heC13aWR0aDogNzAlO1xuICAgIG1hcmdpbjogNTBweCBhdXRvO1xuICB9XG59IiwiJGFwcEJhY2tncm91bmQ6ICMzOTliYWI7XG4kYmVlckxpc3RXaWR0aDogMjAwcHg7XG4kYmVlckxpc3RIZWlnaHQ6IDMwMHB4O1xuJGJlZXJEZXRhaWxXaWR0aDogNDAwcHg7XG4iXX0= */");
 
 /***/ }),
 
@@ -9194,28 +9247,50 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaginatedComponent", function() { return PaginatedComponent; });
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
 /* harmony import */ var _store_beers_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/beers.actions */ "./src/app/beers/store/beers.actions.ts");
 /* harmony import */ var _store_beers_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/beers.selectors */ "./src/app/beers/store/beers.selectors.ts");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm5/store.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm5/forms.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/common.js");
 
 
 
 
 
+
+
+
+
+
+function PaginatedComponent_button_5_Template(rf, ctx) { if (rf & 1) {
+    var _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function PaginatedComponent_button_5_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3); var ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r2.updateRequest({ page: 1 }); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "First");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} }
+function PaginatedComponent_a_12_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "a", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](5, "img", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    var beer_r4 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("routerLink", "/beers/" + beer_r4.id);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", beer_r4.name, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", beer_r4.tagline, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", beer_r4.image_url, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+} }
 var PaginatedComponent = /** @class */ (function () {
     function PaginatedComponent(store, route, router) {
         this.store = store;
@@ -9234,24 +9309,55 @@ var PaginatedComponent = /** @class */ (function () {
             _this.store.dispatch(Object(_store_beers_actions__WEBPACK_IMPORTED_MODULE_2__["fetchBeersListRequest"])(query));
         });
     };
-    PaginatedComponent.ctorParameters = function () { return [
-        { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_0__["ActivatedRoute"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"] }
-    ]; };
-    PaginatedComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-paginated',
-            template: __importDefault(__webpack_require__(/*! raw-loader!./paginated.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/beers/paginated/paginated.component.html")).default,
-            styles: [__importDefault(__webpack_require__(/*! ./paginated.component.scss */ "./src/app/beers/paginated/paginated.component.scss")).default]
-        }),
-        __metadata("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_0__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"]])
-    ], PaginatedComponent);
+    PaginatedComponent.ɵfac = function PaginatedComponent_Factory(t) { return new (t || PaginatedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_0__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"])); };
+    PaginatedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: PaginatedComponent, selectors: [["app-paginated"]], decls: 14, vars: 7, consts: [[1, "Toolbar"], ["aria-label", "Beer Name input", "type", "text", "placeholder", "Search by name", 3, "ngModel", "keyup", "ngModelChange"], [3, "click", 4, "ngIf"], [3, "disabled", "click"], [3, "click"], [1, "BeersList"], ["class", "beer", 3, "routerLink", 4, "ngFor", "ngForOf"], [1, "beer", 3, "routerLink"], ["alt", "beer image", 3, "src"]], template: function PaginatedComponent_Template(rf, ctx) { if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "section", 0);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "label");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, " Search by Beer Name: ");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "input", 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("keyup", function PaginatedComponent_Template_input_keyup_3_listener() { return ctx.updateRequest({ beer_name: ctx.beer_name }); })("ngModelChange", function PaginatedComponent_Template_input_ngModelChange_3_listener($event) { return ctx.beer_name = $event; });
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "div");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, PaginatedComponent_button_5_Template, 2, 0, "button", 2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "button", 3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function PaginatedComponent_Template_button_click_6_listener() { return ctx.updateRequest({ page: ctx.page$ - 0 - 1 }); });
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "Previous");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 4);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function PaginatedComponent_Template_button_click_9_listener() { return ctx.updateRequest({ page: ctx.page$ - 0 + 1 }); });
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, "Next");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "section", 5);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](12, PaginatedComponent_a_12_Template, 6, 4, "a", 6);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](13, "async");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        } if (rf & 2) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.beer_name);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.page$ > 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx.page$ <= 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx.page$, " ");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](13, 5, ctx.beers$));
+        } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterLinkWithHref"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_6__["AsyncPipe"]], styles: [".BeersList[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 50px;\n  justify-content: center;\n  align-items: center;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 200px;\n  height: 300px;\n  margin: 15px;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%] {\n  margin-bottom: 0;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%], .BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  text-align: center;\n}\n.BeersList[_ngcontent-%COMP%]   .beer[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  height: 50%;\n}\n.BeersList[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\n.BeersList[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:hover {\n  box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.7);\n  text-shadow: none;\n}\n@media screen and (min-width: 1420px) {\n  .BeersList[_ngcontent-%COMP%] {\n    max-width: 70%;\n    margin: 50px auto;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb2xkZS9Xb3Jrc3BhY2UvZnJvbnRlbmQtdGVzdC1iZWVycy1saXN0LWFuZ3VsYXIvc3JjL2FwcC9iZWVycy9iZWVyLWxpc3QvYmVlci1saXN0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9iZWVycy9wYWdpbmF0ZWQvcGFnaW5hdGVkLmNvbXBvbmVudC5zY3NzIiwiL1VzZXJzL3NvbGRlL1dvcmtzcGFjZS9mcm9udGVuZC10ZXN0LWJlZXJzLWxpc3QtYW5ndWxhci9zcmMvc2V0dXAuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNFLGFBQUE7RUFDQSxlQUFBO0VBQ0EsWUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7QUNBRjtBREVFO0VBQ0UsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLFlFWlk7RUZhWixhRVphO0VGYWIsWUFBQTtBQ0FKO0FEQ0k7RUFDRSxnQkFBQTtBQ0NOO0FEQ0k7O0VBRUUsa0JBQUE7QUNDTjtBRENJO0VBQ0UsV0FBQTtBQ0NOO0FERUU7RUFDRSxjQUFBO0VBQ0Esd0JBQUE7QUNBSjtBRENJO0VBQ0UscURBQUE7RUFDQSxpQkFBQTtBQ0NOO0FER0U7RUFuQ0Y7SUFvQ0ksY0FBQTtJQUNBLGlCQUFBO0VDQUY7QUFDRiIsImZpbGUiOiJzcmMvYXBwL2JlZXJzL3BhZ2luYXRlZC9wYWdpbmF0ZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IFwiLi4vLi4vLi4vc2V0dXAuc2Nzc1wiO1xuLkJlZXJzTGlzdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbiAgbWFyZ2luOiA1MHB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcblxuICAuYmVlciB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgd2lkdGg6ICRiZWVyTGlzdFdpZHRoO1xuICAgIGhlaWdodDogJGJlZXJMaXN0SGVpZ2h0O1xuICAgIG1hcmdpbjogMTVweDtcbiAgICBoNCB7XG4gICAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIH1cbiAgICBoNCxcbiAgICBwIHtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG4gICAgaW1nIHtcbiAgICAgIGhlaWdodDogNTAlO1xuICAgIH1cbiAgfVxuICBhIHtcbiAgICBjb2xvcjogaW5oZXJpdDtcbiAgICB0ZXh0LWRlY29yYXRpb246IGluaGVyaXQ7XG4gICAgJjpob3ZlciB7XG4gICAgICBib3gtc2hhZG93OiBpbnNldCAwIDAgMTBweCAwIHJnYmEod2hpdGUsIDAuNyk7XG4gICAgICB0ZXh0LXNoYWRvdzogbm9uZTtcbiAgICB9XG4gIH1cblxuICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAxNDIwcHgpIHtcbiAgICBtYXgtd2lkdGg6IDcwJTtcbiAgICBtYXJnaW46IDUwcHggYXV0bztcbiAgfVxufVxuXG4iLCIuQmVlcnNMaXN0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xuICBtYXJnaW46IDUwcHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLkJlZXJzTGlzdCAuYmVlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICB3aWR0aDogMjAwcHg7XG4gIGhlaWdodDogMzAwcHg7XG4gIG1hcmdpbjogMTVweDtcbn1cbi5CZWVyc0xpc3QgLmJlZXIgaDQge1xuICBtYXJnaW4tYm90dG9tOiAwO1xufVxuLkJlZXJzTGlzdCAuYmVlciBoNCxcbi5CZWVyc0xpc3QgLmJlZXIgcCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5CZWVyc0xpc3QgLmJlZXIgaW1nIHtcbiAgaGVpZ2h0OiA1MCU7XG59XG4uQmVlcnNMaXN0IGEge1xuICBjb2xvcjogaW5oZXJpdDtcbiAgdGV4dC1kZWNvcmF0aW9uOiBpbmhlcml0O1xufVxuLkJlZXJzTGlzdCBhOmhvdmVyIHtcbiAgYm94LXNoYWRvdzogaW5zZXQgMCAwIDEwcHggMCByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNyk7XG4gIHRleHQtc2hhZG93OiBub25lO1xufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDogMTQyMHB4KSB7XG4gIC5CZWVyc0xpc3Qge1xuICAgIG1heC13aWR0aDogNzAlO1xuICAgIG1hcmdpbjogNTBweCBhdXRvO1xuICB9XG59IiwiJGFwcEJhY2tncm91bmQ6ICMzOTliYWI7XG4kYmVlckxpc3RXaWR0aDogMjAwcHg7XG4kYmVlckxpc3RIZWlnaHQ6IDMwMHB4O1xuJGJlZXJEZXRhaWxXaWR0aDogNDAwcHg7XG4iXX0= */"] });
     return PaginatedComponent;
 }());
 
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](PaginatedComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
+        args: [{
+                selector: 'app-paginated',
+                templateUrl: './paginated.component.html',
+                styleUrls: ['./paginated.component.scss']
+            }]
+    }], function () { return [{ type: _ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_0__["ActivatedRoute"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"] }]; }, null); })();
 
 
 /***/ }),
@@ -9282,9 +9388,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBeerResponse", function() { return fetchBeerResponse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBeerRequest", function() { return fetchBeerRequest; });
 /* harmony import */ var _models__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models */ "./src/app/models.ts");
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 
 var FETCH_BEERS_REQUEST = '[Beers] fetch list of beers request';
 var FETCH_BEERS_INFINITE = '[Beers] fetch list of infinite beers request';
@@ -9332,8 +9435,8 @@ var fetchBeerRequest = function (id) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BeersEffects", function() { return BeersEffects; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/__ivy_ngcc__/fesm5/effects.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _beers_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../beers.service */ "./src/app/beers/beers.service.ts");
 /* harmony import */ var _beers_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./beers.actions */ "./src/app/beers/store/beers.actions.ts");
@@ -9348,9 +9451,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+
+
+
 
 
 
@@ -9366,10 +9469,8 @@ var BeersEffects = /** @class */ (function () {
         this.fetchBeersInfinite = this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_beers_actions__WEBPACK_IMPORTED_MODULE_4__["FETCH_BEERS_INFINITE"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (action) { return _this.beersService.getBeers(action.payload); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return Object(_beers_actions__WEBPACK_IMPORTED_MODULE_4__["fetchBeersListInfiniteResponse"])(res); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function () { return Object(rxjs_index__WEBPACK_IMPORTED_MODULE_5__["of"])(Object(_beers_actions__WEBPACK_IMPORTED_MODULE_4__["fetchBeersListFailed"])()); }));
         this.fetchPaginatedBeers = this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_beers_actions__WEBPACK_IMPORTED_MODULE_4__["FETCH_BEER_REQUEST"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (action) { return _this.beersService.getBeer(action.payload); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return Object(_beers_actions__WEBPACK_IMPORTED_MODULE_4__["fetchBeerResponse"])(res); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function () { return Object(rxjs_index__WEBPACK_IMPORTED_MODULE_5__["of"])(Object(_beers_actions__WEBPACK_IMPORTED_MODULE_4__["fetchBeersListFailed"])()); }));
     }
-    BeersEffects.ctorParameters = function () { return [
-        { type: _ngrx_effects__WEBPACK_IMPORTED_MODULE_1__["Actions"] },
-        { type: _beers_service__WEBPACK_IMPORTED_MODULE_3__["BeersService"] }
-    ]; };
+    BeersEffects.ɵfac = function BeersEffects_Factory(t) { return new (t || BeersEffects)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_ngrx_effects__WEBPACK_IMPORTED_MODULE_1__["Actions"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_beers_service__WEBPACK_IMPORTED_MODULE_3__["BeersService"])); };
+    BeersEffects.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: BeersEffects, factory: BeersEffects.ɵfac });
     __decorate([
         Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_1__["Effect"])(),
         __metadata("design:type", Object)
@@ -9382,13 +9483,12 @@ var BeersEffects = /** @class */ (function () {
         Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_1__["Effect"])(),
         __metadata("design:type", Object)
     ], BeersEffects.prototype, "fetchPaginatedBeers", void 0);
-    BeersEffects = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_ngrx_effects__WEBPACK_IMPORTED_MODULE_1__["Actions"], _beers_service__WEBPACK_IMPORTED_MODULE_3__["BeersService"]])
-    ], BeersEffects);
     return BeersEffects;
 }());
 
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BeersEffects, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return [{ type: _ngrx_effects__WEBPACK_IMPORTED_MODULE_1__["Actions"] }, { type: _beers_service__WEBPACK_IMPORTED_MODULE_3__["BeersService"] }]; }, { fetchBeers: [], fetchBeersInfinite: [], fetchPaginatedBeers: [] }); })();
 
 
 /***/ }),
@@ -9415,8 +9515,12 @@ var __assign = (undefined && undefined.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
+var __spreadArrays = (undefined && undefined.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
 };
 
 var initialState = {
@@ -9426,7 +9530,7 @@ var initialState = {
 var LAST_BEER = 'lastBeer';
 var LAST_BEERS_LIST = 'lastBeersList';
 var LAST_BEERS_QUERY = 'lastBeersQuery';
-var beersReducer = function (state, action) {
+function beersReducer(state, action) {
     if (state === void 0) { state = initialState; }
     switch (action.type) {
         case _beers_actions__WEBPACK_IMPORTED_MODULE_0__["FETCH_BEERS_RESPONSE"]: {
@@ -9437,7 +9541,7 @@ var beersReducer = function (state, action) {
             catch (error) {
                 console.info('%cvariable: error trying to save lastBeersList', 'background-color: lime;', error);
             }
-            return __assign({}, state, { beers: beers });
+            return __assign(__assign({}, state), { beers: beers });
         }
         case _beers_actions__WEBPACK_IMPORTED_MODULE_0__["FETCH_BEERS_INFINITE_RESPONSE"]: {
             var beers = action.payload;
@@ -9447,7 +9551,7 @@ var beersReducer = function (state, action) {
             catch (error) {
                 console.info('%cvariable: error trying to save lastBeersList', 'background-color: lime;', error);
             }
-            return __assign({}, state, { beers: state.beers.concat(beers) });
+            return __assign(__assign({}, state), { beers: __spreadArrays(state.beers, beers) });
         }
         case _beers_actions__WEBPACK_IMPORTED_MODULE_0__["FETCH_BEERS_REQUEST"]: {
             try {
@@ -9457,7 +9561,7 @@ var beersReducer = function (state, action) {
                 if (newQuery == lastQuery) {
                     var beers = JSON.parse(localStorage.getItem(LAST_BEERS_LIST));
                     // I assume here that localStorage is faster than network (I should make sure with timestamps)
-                    return __assign({}, state, { beers: beers });
+                    return __assign(__assign({}, state), { beers: beers });
                 }
             }
             catch (error) {
@@ -9466,12 +9570,12 @@ var beersReducer = function (state, action) {
             }
         }
         case _beers_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_BEERS_LIST"]: {
-            return __assign({}, state, { beers: [] });
+            return __assign(__assign({}, state), { beers: [] });
         }
         case _beers_actions__WEBPACK_IMPORTED_MODULE_0__["FETCH_BEER_RESPONSE"]: {
             var beer = action.payload[0];
             localStorage.setItem(LAST_BEER, JSON.stringify(beer));
-            return __assign({}, state, { beer: beer });
+            return __assign(__assign({}, state), { beer: beer });
         }
         case _beers_actions__WEBPACK_IMPORTED_MODULE_0__["FETCH_BEER_REQUEST"]: {
             try {
@@ -9479,7 +9583,7 @@ var beersReducer = function (state, action) {
                 var beer = JSON.parse(localStorage.getItem(LAST_BEER));
                 if (beer.id == id) {
                     // I assume here that localStorage is faster than network (I should make sure with timestamps)
-                    return __assign({}, state, { beer: beer });
+                    return __assign(__assign({}, state), { beer: beer });
                 }
             }
             catch (error) {
@@ -9491,7 +9595,8 @@ var beersReducer = function (state, action) {
             return state;
     }
     ;
-};
+}
+;
 
 
 /***/ }),
@@ -9510,11 +9615,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBeersStateSelector", function() { return getBeersStateSelector; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBeersSelector", function() { return getBeersSelector; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBeerDetailSelector", function() { return getBeerDetailSelector; });
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm5/store.js");
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index */ "./src/app/beers/store/index.ts");
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 
 
 var getBeers = function (state) { return state && state.beers; };
@@ -9537,11 +9639,8 @@ var getBeerDetailSelector = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["cre
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "beersReducers", function() { return beersReducers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDrinksState", function() { return getDrinksState; });
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm5/store.js");
 /* harmony import */ var _beers_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./beers.reducer */ "./src/app/beers/store/beers.reducer.ts");
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 
 
 var beersReducers = {
@@ -9562,9 +9661,6 @@ var getDrinksState = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeat
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GenericAction", function() { return GenericAction; });
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 var GenericAction = /** @class */ (function () {
     function GenericAction(type, payload) {
         this.type = type;
@@ -9590,9 +9686,6 @@ __webpack_require__.r(__webpack_exports__);
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 var environment = {
     production: false
 };
@@ -9620,24 +9713,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_es6_reflect__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_es6_reflect__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_es7_reflect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/es7/reflect */ "./node_modules/core-js/es7/reflect.js");
 /* harmony import */ var core_js_es7_reflect__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_es7_reflect__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
-var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
-  return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
 
 
 
 
 
 
-if (_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].production) {
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["enableProdMode"])();
 }
-Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__["platformBrowserDynamic"])()
-    .bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"])
+_angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"])
     .catch(function (err) { return console.log(err); });
 
 
