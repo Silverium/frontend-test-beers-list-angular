@@ -1,5 +1,5 @@
 {
-  "name": "frontend-test-beers-list",
+  "name": "frontend-test-beers-list-angular",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-docs": "ng build --outputPath='docs' --baseHref='frontend-test-beers-list'"
+    "build-docs": "ng build --outputPath='docs' --baseHref='frontend-test-beers-list-angular'"
   },
   "private": true,
   "dependencies": {
