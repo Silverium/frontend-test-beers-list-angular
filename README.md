@@ -2,7 +2,9 @@
 ___
 Navigate to https://codesandbox.io/s/github/Silverium/frontend-test-beers-list-angular to see all code and preview
 
-Navigate to [this link](https://fmuc0.csb.app/) to see the app in the browser
+Navigate to [this link](https://fmuc0.csb.app/) to see the app in the browser (from codesandbox)
+
+Go to https://silverium.github.io/frontend-test-beers-list-angular/ to see it in github as a [SPA](# "Single Page Aplication")
 
 ## Development server
 
