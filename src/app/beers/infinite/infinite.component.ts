@@ -15,6 +15,7 @@ import { ViewportScroller } from "@angular/common";
   styleUrls: ["./infinite.component.scss"]
 })
 export class InfiniteComponent implements OnInit, DoCheck {
+  public beer_name: String;
   public beers$: Observable<any>;
   public page$: number;
   private updateRequest: Function;

@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./beer-list.component.scss']
 })
 export class BeerListComponent implements OnInit {
-
+  public beer_name: String; 
   public beers$: Observable<any>;
   public updateRequest: Function;
   constructor(

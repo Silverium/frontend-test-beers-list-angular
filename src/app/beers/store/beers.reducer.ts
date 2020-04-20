@@ -10,7 +10,7 @@ const LAST_BEER = 'lastBeer';
 const LAST_BEERS_LIST = 'lastBeersList';
 const LAST_BEERS_QUERY = 'lastBeersQuery';
 
-export const beersReducer = (state = initialState, action: GenericAction) => {
+export function beersReducer(state = initialState, action: GenericAction) {
   switch (action.type) {
     case FETCH_BEERS_RESPONSE: {
       const beers = action.payload;

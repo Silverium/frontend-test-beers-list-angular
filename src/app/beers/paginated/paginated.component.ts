@@ -13,6 +13,7 @@ import { select, Store } from '@ngrx/store';
   styleUrls: ['./paginated.component.scss']
 })
 export class PaginatedComponent implements OnInit {
+  public beer_name: String;
   public beers$: Observable<any>;
   public page$: number;
   public updateRequest: Function;
